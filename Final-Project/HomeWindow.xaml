@@ -6,7 +6,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final_Project"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="Transparent" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="/calendar.png">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="Transparent" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png">
 
     <Border Background="AliceBlue" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>

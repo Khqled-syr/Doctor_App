@@ -5,7 +5,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final_Project"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="White" Height="470" Width="800" ResizeMode="NoResize" Icon="/calendar.png">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="White" Height="470" Width="800" ResizeMode="NoResize" Icon="Images/calendar.png">
 
 
     <Grid>

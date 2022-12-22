@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Common;
+using System.Linq;
 using System.Windows;
 
 namespace Final_Project
@@ -15,15 +16,13 @@ namespace Final_Project
             InitializeComponent();
 
 
+
             using (var db = new doctor_systemContext())
             {
+                
                 var patients = db.Patients;
 
-                foreach (var p in patients)
-                {
-                    PatientDataGrid.Items.Add(p);
-                    PatientDataGrid.Items.Refresh();
-                }
+                PatientDataGrid.ItemsSource = db.Patients.ToList();
 
                 var pcount = patients.Count();
                 PatientsCount.Text = $"Patients: {pcount.ToString()}";
@@ -53,34 +52,18 @@ namespace Final_Project
         {
             if (PatientDataGrid.SelectedItem == null) return;
 
+            Patient selectedPatient = (Patient)PatientDataGrid.SelectedItem;
+
             using (var db = new doctor_systemContext())
             {
 
-                var idInDB = db.Patients.FirstOrDefault(p => p.PatientId == ((Patient)(PatientDataGrid.SelectedItem)).PatientId);
+                db.Patients.Remove(selectedPatient);
+                db.SaveChanges();
+                PatientDataGrid.ItemsSource = db.Patients.ToList();
+                PatientDataGrid.Items.Refresh();
 
-                if (idInDB == null) return;
-
-                try
-                {
-                    db.Patients.Remove(idInDB);
-           
-                    db.SaveChanges();
-                    PatientDataGrid.Items.Refresh();
-
-                    MessageBox.Show("Succesfully deleted this user.");
-
-                }
-                catch
-                {
-                    MessageBox.Show("The deletion was not succesfully, this patient still has an appointment..");
-                }
-
-
-
-                
-
-                
-
+                MessageBox.Show("Succesfully deleted this user.");
+                        
             }
 
         }
