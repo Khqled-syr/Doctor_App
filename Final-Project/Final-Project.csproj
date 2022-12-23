@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="calendar.png" />
     <None Remove="home.png" />
+    <None Remove="HomeWindow.xaml~RF738017a.TMP" />
     <None Remove="IMG_4354.JPG" />
     <None Remove="mwxofkxe.02a~" />
   </ItemGroup>

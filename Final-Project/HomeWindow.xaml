@@ -88,7 +88,7 @@
                             <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="Gray"/>
 
 
-                            <Button Style="{StaticResource MenuButton}">
+                            <Button Style="{StaticResource MenuButton}" Click="AppointmentsBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TableChair" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="Appointments" FontFamily="Myanmar Text"/>

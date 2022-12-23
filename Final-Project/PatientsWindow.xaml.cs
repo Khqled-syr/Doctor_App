@@ -92,7 +92,7 @@ namespace Final_Project
         {
 
 
-            using (var db = new doctor_systemContext())
+/*            using (var db = new doctor_systemContext())
             {
 
 
@@ -100,7 +100,7 @@ namespace Final_Project
                 db.SaveChanges();
                 PatientDataGrid.ItemsSource = db.Patients.ToList();
                 PatientDataGrid.Items.Refresh();
-            }
+            }*/
 
         }
     }

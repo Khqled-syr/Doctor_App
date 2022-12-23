@@ -19,7 +19,5 @@ namespace Final_Project
         public string Role { get; set; } = null!;
 
         public virtual ICollection<Appointment> Appointments { get; set; }
-
-
     }
 }

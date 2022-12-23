@@ -87,7 +87,7 @@ namespace Final_Project
             {
                 using (var db = new doctor_systemContext())
                 {
-                    var user = db.Users.FirstOrDefault(user => user.Name == NameBox.Text);
+                    User? user = db.Users.FirstOrDefault(user => user.Name == NameBox.Text);
                     if (user == null)
                     {
                         MessageBox.Show("Password or username is not correct!");

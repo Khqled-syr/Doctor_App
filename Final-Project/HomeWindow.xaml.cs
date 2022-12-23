@@ -60,9 +60,7 @@ namespace Final_Project
 
         private void PatientsButton_Click(object sender, RoutedEventArgs e)
         {
-            home = new HomeWindow();
             PatientsWindow patients = new PatientsWindow();
-
 
 
             patients.Show();
@@ -71,5 +69,16 @@ namespace Final_Project
 
 
         }
+
+        private void AppointmentsBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            AppointmentsWindow appointments = new AppointmentsWindow();
+
+            appointments.Show();
+            this.Close();
+
+        }
+
     }
 }
