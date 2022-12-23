@@ -6,7 +6,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final_Project"
-        mc:Ignorable="d" Background="Transparent" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png"> 
+        mc:Ignorable="d" Background="Transparent" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png">
 
 
     <Border Background="AliceBlue" CornerRadius="30">
@@ -150,12 +150,16 @@
                 <TextBlock Text="Patients" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
                 <!--Add Button-->
-                <Button Style="{StaticResource AddButton}">
+                <TextBox x:Name="addname_Box" Height="15" Margin="2" VerticalAlignment="Top"/>
+                <TextBox x:Name="addaddress_Box" Margin="22" Height="30" VerticalAlignment="Top"/>
+
+                <Button Style="{StaticResource AddButton}" Click="AddPatientBtn_Click">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                         <TextBlock Text="Add New Patient"/>
                     </StackPanel>
                 </Button>
+
 
                 <!--Seprator-->
                 <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
@@ -208,8 +212,11 @@
                                         <Button Style="{StaticResource GridEditButton}" Click="PatientEditBtn_Click">
                                             <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource GridButtonIcon}"/>
                                         </Button>
-                                        <Button Margin="5 0 0 0" Style="{StaticResource GridRemoveButton}" Click="PatientRemoveBtn_Click">
+                                        <Button Margin="5 0 0 0" Style="{StaticResource GridRemoveButton}" Click="PatientDeleteBtn_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource GridButtonIcon}"/>
+                                        </Button>
+                                        <Button Margin="10 0 0 0" Style="{StaticResource AddButton}" Click="MakeAppointmentBtn_Click">
+                                            <TextBlock Text="Make an appointment"/>
                                         </Button>
                                     </StackPanel>
                                 </DataTemplate>
