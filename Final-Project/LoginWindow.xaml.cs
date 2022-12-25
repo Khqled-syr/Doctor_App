@@ -11,9 +11,8 @@ namespace Final_Project
         public LoginWindow()
         {
             InitializeComponent();
-        }
 
-        public static LoginWindow login;
+        }
 
 
         public void NameBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -46,9 +45,9 @@ namespace Final_Project
 
         public void Login_Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new doctor_systemContext())
+            using (var db = new databaseContext())
             {
-                var user = db.Users.FirstOrDefault(user => user.Name == NameBox.Text);
+                TUser? user = db.TUsers.FirstOrDefault(user => user.Name == NameBox.Text);
                 if (user == null)
                 {
                     MessageBox.Show("Password or username is not correct!");
@@ -64,13 +63,8 @@ namespace Final_Project
                     //LoginWindow login = new LoginWindow();
                     HomeWindow home = new HomeWindow();
 
-
-
                     home.Show();
                     this.Close();
-
-
-
                 }
                 else
                 {
@@ -81,13 +75,14 @@ namespace Final_Project
             }
         }
 
+        //Enter Button Click
         private void Button_EnterKeyPress(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
-                using (var db = new doctor_systemContext())
+                using (var db = new databaseContext())
                 {
-                    User? user = db.Users.FirstOrDefault(user => user.Name == NameBox.Text);
+                    var user = db.TUsers.FirstOrDefault(user => user.Name == NameBox.Text);
                     if (user == null)
                     {
                         MessageBox.Show("Password or username is not correct!");
@@ -98,9 +93,6 @@ namespace Final_Project
                     if (BC.Verify(passwordBox.Password, user.Password))
                     {
                         App.user = user;
-
-                        //MessageBox.Show("Logged in successfully!");
-                        //LoginWindow login = new LoginWindow();
 
                         HomeWindow home = new HomeWindow();
 
@@ -119,28 +111,10 @@ namespace Final_Project
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
-
-        }
-        /*        private bool IsMaximized = false;
-                private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+                if (e.ChangedButton == MouseButton.Left)
                 {
-        *//*            if (e.ClickCount == 2)
-                    {
-                        this.WindowState = WindowState.Normal;
-                        this.Width = 720;
-                        this.Height = 1080;
-                        IsMaximized = false;
-
-                    }*//*
-                    else
-                    {
-                        this.WindowState = WindowState.Maximized;
-                        IsMaximized = true;
-                    }*/
-
+                    this.DragMove();
+                }
+        }
     }
 }

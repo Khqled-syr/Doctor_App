@@ -5,7 +5,7 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final_Project"
-        mc:Ignorable="d" Background="Transparent" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png">
+        mc:Ignorable="d" Background="Transparent" WindowStartupLocation="CenterOwner" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png">
         
 
 
@@ -42,11 +42,8 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock x:Name="txtTitle" Text=""  Foreground="White" FontSize="24" FontWeight="Bold"
-                                   DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10" FontFamily="Bahnschrift" Height="29">
-                            <TextBlock.DataContext>
-                                <local:User/>
-                            </TextBlock.DataContext>
+                        <TextBlock x:Name="Title" Text="" Foreground="White" FontSize="20"
+                                   DockPanel.Dock="Top" TextAlignment="Left" Margin="5 25 0 10" FontFamily="Bahnschrift" Height="29">
                             <TextBlock.Effect>
                                 <DropShadowEffect/>
                             </TextBlock.Effect>
@@ -54,7 +51,7 @@
 
 
                         <!--Menu seperator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="LightBlue"/>
+                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
 
                         <!--Menu Button-->
 
@@ -66,6 +63,8 @@
                                     <TextBlock Text="Home" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
+      
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -73,6 +72,8 @@
                                     <TextBlock Text="Search" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
+                            
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -81,6 +82,7 @@
                                 </StackPanel>
                             </Button>
 
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
                             <Button Style="{StaticResource MenuButton}" Background="#7e5fdc">
                                 <StackPanel Orientation="Horizontal">
@@ -89,7 +91,7 @@
                                 </StackPanel>
                             </Button>
 
-
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -97,7 +99,6 @@
                                     <TextBlock Text="Add new patient" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
-
 
 
 
@@ -147,19 +148,12 @@
                 </Button>
 
                 <!--Page Title-->
-                <TextBlock Text="Patients" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
+                <TextBlock Text="Appointments" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
-                <!--Add Button-->
-                <Button Style="{StaticResource AddButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Add New Patient"/>
-                    </StackPanel>
-                </Button>
 
 
                 <!--Seprator-->
-                <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
+                <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="Gray"/>
 
                 <!--Counter Title-->
                 <TextBlock x:Name="PatientsCount" Text="" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>

@@ -1,8 +1,8 @@
-﻿using System.Data.Common;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls.Primitives;
-using Microsoft.VisualBasic;
 
 namespace Final_Project
 {
@@ -11,20 +11,20 @@ namespace Final_Project
     /// </summary>
     public partial class PatientsWindow : Window
     {
-
-
         public PatientsWindow()
         {
             InitializeComponent();
+            OnStart();
+            this.WindowState = WindowState.Maximized;
 
 
 
-            using (var db = new doctor_systemContext())
+            using (var db = new databaseContext())
             {
 
-                var patients = db.Patients;
+                var patients = db.TPatients;
 
-                PatientDataGrid.ItemsSource = db.Patients.ToList();
+                PatientDataGrid.ItemsSource = db.TPatients.ToList();
 
                 var pcount = patients.Count();
                 PatientsCount.Text = $"Patients: {pcount.ToString()}";
@@ -32,52 +32,67 @@ namespace Final_Project
             }
         }
 
-        public static PatientsWindow? patients;
+
+        private void OnStart()
+        {
+            LoginWindow login = new LoginWindow();
+
+            if (login.NameBox.Text != null)
+            {
+                Title.Text = "Logged in as " + App.user.Name;
+                return;
+            }
+            else
+            {
+
+                MessageBox.Show("Please Login first to enter..");
+                return;
+            }
+        }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
 
+            LoginWindow login = new LoginWindow();
+
+            login.Show();
+            this.Close();
         }
 
         private void HomePageBtn_Click(object sender, RoutedEventArgs e)
         {
-            HomeWindow home = HomeWindow.home;
-
+            HomeWindow home = new HomeWindow();
 
             home.Show();
             this.Close();
-
         }
-
 
         private void PatientDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             if (PatientDataGrid.SelectedItem == null) return;
 
-            Patient selectedPatient = (Patient)PatientDataGrid.SelectedItem;
+            TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
 
-            using (var db = new doctor_systemContext())
+            using (var db = new databaseContext())
             {
                 try
                 {
-                    db.Patients.Remove(selectedPatient);
+                    db.TPatients.Remove(selectedPatient);
                     db.SaveChanges();
-                    PatientDataGrid.ItemsSource = db.Patients.ToList();
+                    PatientDataGrid.ItemsSource = db.TPatients.ToList();
                     PatientDataGrid.Items.Refresh();
+                    PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
+
 
                     MessageBox.Show($"Succesfully deleted {selectedPatient.Name}.");
+
                 }
                 catch
                 {
                     MessageBox.Show($"Unable to delete {selectedPatient.Name} due to an existed appointment!");
                 }
-
-
             }
-
         }
-
-
 
         private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -91,17 +106,37 @@ namespace Final_Project
         private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
         {
 
-
-/*            using (var db = new doctor_systemContext())
+            using (var db = new databaseContext())
             {
 
+                //var iDBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the ID", "Add patient", "Full Name");
+                var nameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the Full Name", "Add patient", "Full Name");
+                var numberBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the number", "Add patient", "Number");
+                var emailBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the email", "Add patient", "Email");
+                var addressBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the address", "Add patient", "address");
+                var ageBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the age", "Add patient", "Age");
 
-                db.Patients.Add(new Patient("TEST"));
-                db.SaveChanges();
-                PatientDataGrid.ItemsSource = db.Patients.ToList();
-                PatientDataGrid.Items.Refresh();
-            }*/
+                if(nameBox == null)
+                {
+                    MessageBox.Show("ERROR");
+                    return;
+                }
+                try
+                {
 
+                    db.TPatients.Add(new TPatient(nameBox, Convert.ToInt16(numberBox), emailBox, addressBox, Convert.ToInt64(ageBox)));
+                    db.SaveChanges();
+                    PatientDataGrid.ItemsSource = db.TPatients.ToList();
+                    PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
+                }
+                catch (Exception ex)
+                {
+                    if (nameBox == null)
+                    {
+                        MessageBox.Show("ERROR"); return;
+                    }
+                }
+            }
         }
     }
 }

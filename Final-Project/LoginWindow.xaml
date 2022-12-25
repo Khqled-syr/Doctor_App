@@ -9,28 +9,33 @@
 
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="23*"/>
+            <ColumnDefinition Width="377*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition/>
+            <RowDefinition Height="95*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="213*"/>
+            <RowDefinition Height="114*"/>
         </Grid.RowDefinitions>
-        <Border Background="White" CornerRadius="0 10 10 0" Grid.RowSpan="2">
+        <!--<Border Background="White" CornerRadius="0 10 10 0" Grid.RowSpan="2" Grid.ColumnSpan="2">
             <StackPanel>
                 <TextBlock Style="{StaticResource TitleText}" Foreground="Black"/>
             </StackPanel>
-        </Border>
-
-
-
-        <Border Background="White" CornerRadius="0 10 10 0" Grid.RowSpan="2" MouseDown="Border_MouseDown">
+        
+        </Border>-->
+        <Border Background="AliceBlue" CornerRadius="0 10 10 0" Grid.RowSpan="4" MouseDown="Border_MouseDown" Grid.ColumnSpan="2">
 
             <StackPanel>
+
                 <TextBlock Text="Login" Style="{StaticResource TitleText}" FontFamily="Segoe UI Variable Small" FontStyle="Italic" FontSize="48" Opacity="0.8" Foreground="#FF757171" Width="148" Margin="5"/>
-                
+
                 <StackPanel Orientation="Horizontal" Margin="0 1 " HorizontalAlignment="Center">
                     <Icon:PackIconMaterial Kind="Login" Width="145" Height="75" Margin="8" RenderTransformOrigin="0.514,-0.109" Opacity="0.5"/>
-                    <!--<Image Source="D:\School - Encora\Final-Project\Final-Project\images/logo2.png" Width="145" Margin="8" Height="88" RenderTransformOrigin="0.514,-0.109" Opacity="0.5"></Image>-->
                 </StackPanel>
-                
+
+
 
                 <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="250 7" CornerRadius="5">
                     <Grid Margin="7 9">
@@ -45,8 +50,8 @@
                         <TextBox x:Name="NameBox" TextChanged="NameBox_TextChanged" Style="{StaticResource TextBox}"/>
                     </Grid>
                 </Border>
-                
-                
+
+
 
                 <Border BorderBrush="#ACB0AF" BorderThickness="1" Margin="250 7" CornerRadius="5">
                     <Grid Margin="7 9">

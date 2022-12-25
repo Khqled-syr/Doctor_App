@@ -14,7 +14,9 @@ namespace Final_Project
     public partial class App : Application
     {
 
-        public static User? user;
+        public static TUser? user;
+
+
 
     }
 }

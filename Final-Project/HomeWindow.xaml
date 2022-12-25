@@ -41,11 +41,8 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock x:Name="txtTitle" Text=""  Foreground="White" FontSize="24" FontWeight="Bold"
-                                   DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10" FontFamily="Bahnschrift" Height="29">
-                            <TextBlock.DataContext>
-                                <local:User/>
-                            </TextBlock.DataContext>
+                        <TextBlock x:Name="Title" Text=""  Foreground="White" FontSize="20"
+                                   DockPanel.Dock="Top" TextAlignment="Left" Margin="5 25 0 10" FontFamily="Bahnschrift" Height="29">
                             <TextBlock.Effect>
                                 <DropShadowEffect/>
                             </TextBlock.Effect>
@@ -53,7 +50,7 @@
 
 
                         <!--Menu seperator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.9" Background="LightGray"/>
+                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
 
                         
                         <!--Menu Button-->
@@ -67,16 +64,17 @@
                                 </StackPanel>
                             </Button>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="Gray"/>
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="LightBlue"/>
 
                             <Button Style="{StaticResource MenuButton}" Click="PatientsButton_Click" FontFamily="Tempus Sans ITC">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="AccountSearch" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Search" FontFamily="Myanmar Text"/>
+                                    <Icon:PackIconMaterial Kind="Account" Style="{StaticResource DashButtonIcon}"/>
+                                    <TextBlock Text="Patients" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="Gray"/>
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="LightBlue"/>
+                            
 
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
@@ -85,7 +83,8 @@
                                 </StackPanel>
                             </Button>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="Gray"/>
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="LightBlue"/>
+                            
 
 
                             <Button Style="{StaticResource MenuButton}" Click="AppointmentsBtn_Click">
@@ -95,7 +94,8 @@
                                 </StackPanel>
                             </Button>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="Gray"/>
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="LightBlue"/>
+                            
 
 
 
@@ -106,7 +106,6 @@
                                 </StackPanel>
                             </Button>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="Gray"/>
 
                         </StackPanel>
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Automation.Peers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -22,20 +23,42 @@ namespace Final_Project
         public AppointmentsWindow()
         {
             InitializeComponent();
+            OnStart();
+
+            this.WindowState = WindowState.Maximized;
 
 
-            using (var db = new doctor_systemContext())
+            using (var db = new databaseContext())
             {
 
-                var appointments = db.Appointments;
+                var appointments = db.TAppointments;
 
-                PatientDataGrid.ItemsSource = db.Appointments.ToList();
+                PatientDataGrid.ItemsSource = db.TAppointments.ToList();
 
                 var pcount = appointments.Count();
                 PatientsCount.Text = $"Appointments: {pcount.ToString()}";
 
             }
         }
+
+
+        private void OnStart()
+        {
+            LoginWindow login = new LoginWindow();
+
+            if (login.NameBox.Text != null)
+            {
+                Title.Text = "Logged in as " + App.user.Name;
+                return;
+            }
+            else
+            {
+
+                MessageBox.Show("Please Login first to enter..");
+                return;
+            }
+        }
+
 
         private void HomePageBtn_Click(object sender, RoutedEventArgs e)
         {
