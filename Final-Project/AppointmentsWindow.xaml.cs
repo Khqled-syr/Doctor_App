@@ -1,23 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation.Peers;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace Final_Project
 {
-    /// <summary>
-    /// Interaction logic for AppointmentsWindow.xaml
-    /// </summary>
     public partial class AppointmentsWindow : Window
     {
         public AppointmentsWindow()
@@ -30,13 +17,12 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-
                 var appointments = db.TAppointments;
 
                 PatientDataGrid.ItemsSource = db.TAppointments.ToList();
 
                 var pcount = appointments.Count();
-                PatientsCount.Text = $"Appointments: {pcount.ToString()}";
+                AppointmentsCount.Text = $"Appointments: {pcount.ToString()}";
 
             }
         }
@@ -48,7 +34,7 @@ namespace Final_Project
 
             if (login.NameBox.Text != null)
             {
-                Title.Text = "Logged in as " + App.user.Name;
+                Title.Text = "Logged in as " + App.user.Name.ToUpper();
                 return;
             }
             else
@@ -60,14 +46,21 @@ namespace Final_Project
         }
 
 
-        private void HomePageBtn_Click(object sender, RoutedEventArgs e)
+        private async void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
-
+            LoginWindow login = new LoginWindow();
+            
+            this.Close();
+            login.Show();
+            
         }
 
-        private void Logout_Button_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
+            HomeWindow home = new HomeWindow();
 
+            home.Show();
+            this.Close();
         }
     }
 }

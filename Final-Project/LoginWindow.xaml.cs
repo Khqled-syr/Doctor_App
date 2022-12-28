@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -11,18 +13,86 @@ namespace Final_Project
         public LoginWindow()
         {
             InitializeComponent();
-
         }
 
+        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var db = new databaseContext())
+            {
+                TUser? user = db.TUsers.FirstOrDefault(user => user.Name.ToLower() == NameBox.Text.ToLower());
+                if (user == null)
+                {
+                    Results.Content = "Password or Username is not correct, please try again.";
+                    passwordBox.Clear();
+                    return;
+                }
 
-        public void NameBox_TextChanged(object sender, TextChangedEventArgs e)
+                if (BC.Verify(passwordBox.Password, user.Password))
+                {
+                    App.user = user;
+                    HomeWindow home = new HomeWindow();
+
+                    home.Show();
+                    this.Close();
+                }
+                else
+                {
+                    Results.Content = "Password or Username is not correct, please try again.";
+                    passwordBox.Clear();
+                    return;
+                }
+            }
+        }
+
+        private void Button_EnterKeyPress(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return)
+            {
+                using (var db = new databaseContext())
+                {
+                    TUser? user = db.TUsers.FirstOrDefault(user => user.Name.ToLower() == NameBox.Text.ToLower());
+                    if (user == null)
+                    {
+                        Results.Content = "Password or Username is not correct, please try again.";
+                        passwordBox.Clear();
+                        return;
+                    }
+
+                    if (BC.Verify(passwordBox.Password, user.Password))
+                    {
+                        App.user = user;
+                        HomeWindow home = new HomeWindow();
+                        
+                        this.Close();
+                        home.Show();
+                    }
+                    else
+                    {
+                        Results.Content = "Password or Username is not correct, please try again.";
+                        passwordBox.Clear();
+                        return;
+                    }
+                }
+            }
+        }
+
+        //Events
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                this.DragMove();
+            }
+        }
+
+        private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(NameBox.Text) && NameBox.Text.Length > 0)
                 Name.Visibility = Visibility.Collapsed;
             else
                 Name.Visibility = Visibility.Visible;
-
         }
+
         private void Name_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NameBox.Focus();
@@ -35,86 +105,9 @@ namespace Final_Project
             else
                 Password.Visibility = Visibility.Visible;
         }
-
         private void Password_MouseDown(object sender, MouseButtonEventArgs e)
         {
             passwordBox.Focus();
-        }
-
-        //Scaffold-DbContext "server=localhost;database=doctor_system;user=root;" Pomelo.EntityFrameworkCore.MySql
-
-        public void Login_Button_Click(object sender, RoutedEventArgs e)
-        {
-            using (var db = new databaseContext())
-            {
-                TUser? user = db.TUsers.FirstOrDefault(user => user.Name == NameBox.Text);
-                if (user == null)
-                {
-                    MessageBox.Show("Password or username is not correct!");
-                    passwordBox.Clear();
-                    return;
-                }
-
-                if (BC.Verify(passwordBox.Password, user.Password))
-                {
-                    App.user = user;
-
-                    //MessageBox.Show("Logged in successfully!");
-                    //LoginWindow login = new LoginWindow();
-                    HomeWindow home = new HomeWindow();
-
-                    home.Show();
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Password or username is not correct!");
-                    passwordBox.Clear();
-                    return;
-                }
-            }
-        }
-
-        //Enter Button Click
-        private void Button_EnterKeyPress(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return)
-            {
-                using (var db = new databaseContext())
-                {
-                    var user = db.TUsers.FirstOrDefault(user => user.Name == NameBox.Text);
-                    if (user == null)
-                    {
-                        MessageBox.Show("Password or username is not correct!");
-                        passwordBox.Clear();
-                        return;
-                    }
-
-                    if (BC.Verify(passwordBox.Password, user.Password))
-                    {
-                        App.user = user;
-
-                        HomeWindow home = new HomeWindow();
-
-                        home.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Password or username is not correct!");
-                        passwordBox.Clear();
-                        return;
-                    }
-                }
-            }
-        }
-
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-                if (e.ChangedButton == MouseButton.Left)
-                {
-                    this.DragMove();
-                }
         }
     }
 }

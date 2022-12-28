@@ -28,7 +28,7 @@
                 </Button>
 
 
-                <Border Grid.Row="1" Background="LightBlue" CornerRadius="0 50 0 30">
+                <Border Grid.Row="1" Background="LightBlue" CornerRadius="0 50 0 30" Margin="0,0,-23,0">
                     <DockPanel>
 
                         <!--Menu Logo-->
@@ -57,7 +57,7 @@
 
                         <StackPanel DockPanel.Dock="Top">
 
-                            <Button Style="{StaticResource MenuButton}" Click="HomePageBtn_Click" FontFamily="SimSun">
+                            <Button Style="{StaticResource MenuButton}" Click="HomeButton_Click" FontFamily="SimSun">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="Home" FontFamily="Myanmar Text"/>
@@ -128,7 +128,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Width="300" HorizontalAlignment="Left">
+                <Grid Width="300" HorizontalAlignment="Right">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search here ..."
                            Visibility="{Binding ElementName=TextBoxSearch}" />
@@ -138,22 +138,14 @@
                     <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#B0B9C6" HorizontalAlignment="Right" />
                 </Grid>
 
-                <!--Top Buttons-->
-                <Button Style="{StaticResource TopButton}" Margin="0 0 20 0" Background="#dcdcdc">
-                    <Icon:PackIconMaterial Kind="Cog"/>
-                </Button>
-
-                <Button Style="{StaticResource TopButton}" Margin="0 0 55 0">
-                    <Icon:PackIconMaterial Kind="Bell"/>
-                </Button>
 
                 <!--Page Title-->
-                <TextBlock Text="Appointments" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="AppointmentsCount" Text="Appointments" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
 
 
                 <!--Seprator-->
-                <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="Gray"/>
+                <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
                 <!--Counter Title-->
                 <TextBlock x:Name="PatientsCount" Text="" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>

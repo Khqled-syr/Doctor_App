@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Final_Project"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="White" Height="470" Width="800" ResizeMode="NoResize" Icon="Images/calendar.png">
 
 
@@ -61,14 +60,14 @@
                         </Grid.ColumnDefinitions>
 
                         <Icon:PackIconMaterial Kind="Lock" Width="15" Height="15"/>
-                        <!--<Image Source="D:\School - Encora\Final-Project\Final-Project/images/lock.png" Height="30" Opacity="0.5"/>-->
                         <TextBlock x:Name="Password" MouseDown="Password_MouseDown" Text=" Password" Style="{StaticResource TextHint}" Opacity="0.5" FontWeight="Bold" FontFamily="Segoe UI Variable Small"/>
                         <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" PreviewKeyDown="Button_EnterKeyPress" Style="{StaticResource TextBox}"/>
                     </Grid>
                 </Border>
-
+                
+                <Label x:Name="Results" Content="" Foreground="Red" FontWeight="Bold" Margin="5" HorizontalAlignment="Center" />
                 <Button Content="Login" Click="Login_Button_Click" Style="{StaticResource MainButton}"/>
-                <!--<Button Content="Create an account" Click="Register_Button_Click" HorizontalAlignment="Left" Style="{StaticResource button}"/>-->
+                
 
                 <Grid>
                     <Border CornerRadius="10 0 0 10">

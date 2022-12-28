@@ -29,7 +29,7 @@
                 </Button>
 
 
-                <Border Grid.Row="1" Background="LightBlue" CornerRadius="0 50 0 30">
+                <Border Grid.Row="1" Background="LightBlue" CornerRadius="0 50 0 30" Margin="0,0,-23,0">
                     <DockPanel>
 
                         <!--Menu Logo-->
@@ -58,7 +58,7 @@
 
                         <StackPanel DockPanel.Dock="Top">
 
-                            <Button Style="{StaticResource MenuButton}" Click="HomePageBtn_Click" FontFamily="SimSun">
+                            <Button Style="{StaticResource MenuButton}" Click="HomeButton_Click" FontFamily="SimSun">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="Home" FontFamily="Myanmar Text"/>
@@ -131,7 +131,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Width="300" HorizontalAlignment="Left">
+                <Grid Width="300" HorizontalAlignment="Right">
                     <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Search here ..."
                            Visibility="{Binding ElementName=TextBoxSearch}" />
@@ -157,41 +157,15 @@
                 <!--Seprator-->
                 <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
-                <!--Counter Title-->
-                <!--<TextBlock x:Name="PatientsCount" Text="" Grid.Row="4" FontSize="20" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>-->
-
-                <!--<TextBlock Text="Name" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
-                --><!--Filter Textbox--><!--
-                <Grid Width="217" HorizontalAlignment="Center" Grid.Row="4" Margin="51,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="41*"/>
-                        <ColumnDefinition Width="159*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Margin="15,0,15,0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text=""
-                           Visibility="{Binding ElementName=FilterTextBox}" Grid.ColumnSpan="2" />
-                    <TextBox Name="addname_Box" Style="{StaticResource FilterTextBox}" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="207"/>
-                </Grid>-->
 
                 <!--Patient Data Grid-->
                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="PatientDataGrid" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>
-                        <!--<DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}" IsThreeState="False">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>-->
                         <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="True" Width="auto" Binding="{Binding PatientId}"/>
                         <DataGridTemplateColumn Header="Full Name" IsReadOnly="True" Width="*" CanUserResize="True">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <!--<Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding Age}">
-                                            <Icon:PackIconMaterial Kind="Account" Background="Blue" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>-->
                                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center">
                                         </TextBlock>
                                     </StackPanel>

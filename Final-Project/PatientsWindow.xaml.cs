@@ -15,39 +15,14 @@ namespace Final_Project
         {
             InitializeComponent();
             OnStart();
-            this.WindowState = WindowState.Maximized;
-
-
-
-            using (var db = new databaseContext())
-            {
-
-                var patients = db.TPatients;
-
-                PatientDataGrid.ItemsSource = db.TPatients.ToList();
-
-                var pcount = patients.Count();
-                PatientsCount.Text = $"Patients: {pcount.ToString()}";
-
-            }
+            
         }
-
-
-        private void OnStart()
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow login = new LoginWindow();
+            HomeWindow home = new HomeWindow();
 
-            if (login.NameBox.Text != null)
-            {
-                Title.Text = "Logged in as " + App.user.Name;
-                return;
-            }
-            else
-            {
-
-                MessageBox.Show("Please Login first to enter..");
-                return;
-            }
+            home.Show();
+            this.Close();
         }
 
         private void Logout_Button_Click(object sender, RoutedEventArgs e)
@@ -58,15 +33,16 @@ namespace Final_Project
             login.Show();
             this.Close();
         }
-
-        private void HomePageBtn_Click(object sender, RoutedEventArgs e)
+        
+        private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
         {
-            HomeWindow home = new HomeWindow();
 
-            home.Show();
-            this.Close();
         }
+        private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
+        
         private void PatientDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             if (PatientDataGrid.SelectedItem == null) return;
@@ -94,37 +70,21 @@ namespace Final_Project
             }
         }
 
-        private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
         {
 
             using (var db = new databaseContext())
             {
-
                 //var iDBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the ID", "Add patient", "Full Name");
                 var nameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the Full Name", "Add patient", "Full Name");
                 var numberBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the number", "Add patient", "Number");
                 var emailBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the email", "Add patient", "Email");
                 var addressBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the address", "Add patient", "address");
                 var ageBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the age", "Add patient", "Age");
-
-                if(nameBox == null)
-                {
-                    MessageBox.Show("ERROR");
-                    return;
-                }
+                
                 try
                 {
-
-                    db.TPatients.Add(new TPatient(nameBox, Convert.ToInt16(numberBox), emailBox, addressBox, Convert.ToInt64(ageBox)));
+                    db.TPatients.Add(new TPatient(nameBox, Convert.ToInt32(numberBox), emailBox, addressBox, Convert.ToInt32(ageBox)));
                     db.SaveChanges();
                     PatientDataGrid.ItemsSource = db.TPatients.ToList();
                     PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
@@ -133,10 +93,42 @@ namespace Final_Project
                 {
                     if (nameBox == null)
                     {
-                        MessageBox.Show("ERROR"); return;
+                        MessageBox.Show("ERROR" + ex.Message); return;
                     }
                 }
             }
         }
+
+        private void OnStart()
+        {
+            LoginWindow login = new LoginWindow();
+            this.WindowState = WindowState.Maximized;
+
+            using (var db = new databaseContext())
+            {
+
+                var patients = db.TPatients;
+
+                PatientDataGrid.ItemsSource = db.TPatients.ToList();
+
+                var pcount = patients.Count();
+                PatientsCount.Text = $"Patients: {pcount.ToString()}";
+
+            }
+
+            if (login.NameBox.Text != null)
+            {
+                Title.Text = "Logged in as " + App.user.Name.ToUpper();
+                return;
+            }
+            else
+            {
+
+                MessageBox.Show("Please Login first to enter..");
+                return;
+            }
+        }
+
+
     }
 }
