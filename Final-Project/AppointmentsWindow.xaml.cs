@@ -17,12 +17,8 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-                var appointments = db.TAppointments;
-
                 PatientDataGrid.ItemsSource = db.TAppointments.ToList();
-
-                var pcount = appointments.Count();
-                AppointmentsCount.Text = $"Appointments: {pcount.ToString()}";
+                AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
 
             }
         }

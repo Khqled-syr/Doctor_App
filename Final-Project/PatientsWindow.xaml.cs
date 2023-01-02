@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
@@ -15,7 +16,7 @@ namespace Final_Project
         {
             InitializeComponent();
             OnStart();
-            
+
         }
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -33,7 +34,7 @@ namespace Final_Project
             login.Show();
             this.Close();
         }
-        
+
         private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -42,7 +43,7 @@ namespace Final_Project
         {
 
         }
-        
+
         private void PatientDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             if (PatientDataGrid.SelectedItem == null) return;
@@ -81,7 +82,7 @@ namespace Final_Project
                 var emailBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the email", "Add patient", "Email");
                 var addressBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the address", "Add patient", "address");
                 var ageBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the age", "Add patient", "Age");
-                
+
                 try
                 {
                     db.TPatients.Add(new TPatient(nameBox, Convert.ToInt32(numberBox), emailBox, addressBox, Convert.ToInt32(ageBox)));
@@ -107,12 +108,9 @@ namespace Final_Project
             using (var db = new databaseContext())
             {
 
-                var patients = db.TPatients;
-
                 PatientDataGrid.ItemsSource = db.TPatients.ToList();
 
-                var pcount = patients.Count();
-                PatientsCount.Text = $"Patients: {pcount.ToString()}";
+                PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
 
             }
 
@@ -129,6 +127,26 @@ namespace Final_Project
             }
         }
 
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //string searchQuery = TextBoxSearch.Text;
+            //string textToSearch = "";
 
+
+            //List<string> searchResults = new List<string>();
+
+
+            //int searchIndex = textToSearch.IndexOf(searchQuery);
+            //while (searchIndex >= 0 )
+            //{
+            //    searchResults.Add(textToSearch.Substring(searchIndex, searchQuery.Length));
+
+            //    searchIndex = textToSearch.IndexOf(searchQuery, searchIndex + searchQuery.Length);
+
+            //}
+
+            
+
+        }
     }
 }

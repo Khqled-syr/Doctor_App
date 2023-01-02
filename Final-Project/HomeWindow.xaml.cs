@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
 
 namespace Final_Project
 {
@@ -40,6 +41,24 @@ namespace Final_Project
         {
             LoginWindow login = new LoginWindow();
             this.WindowState = WindowState.Maximized;
+
+
+
+
+            using (var db = new databaseContext())
+            {
+                var appointments = db.TAppointments;
+
+                HomeAppointmentsGrid.ItemsSource = db.TAppointments.ToList();
+                HomePatientGrid.ItemsSource = db.TPatients.ToList();
+
+                //var acount = appointments.Count();
+                //var pcount = patients.Count();
+                AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
+                PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
+
+            }
+
 
             if (login.NameBox.Text != null)
             {
