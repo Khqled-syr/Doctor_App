@@ -12,7 +12,7 @@ namespace Final_Project
 
         }
         
-        private void Logout_Button_Click(object sender, RoutedEventArgs e)
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
            
             LoginWindow login = new LoginWindow();
@@ -21,7 +21,7 @@ namespace Final_Project
             this.Close();
         }
         
-        private void PatientsButton_Click(object sender, RoutedEventArgs e)
+        private void PatientsBtn_Click(object sender, RoutedEventArgs e)
         {
             PatientsWindow patients = new PatientsWindow();
 
@@ -43,35 +43,32 @@ namespace Final_Project
             this.WindowState = WindowState.Maximized;
 
 
-
-
             using (var db = new databaseContext())
             {
-                var appointments = db.TAppointments;
 
-                HomeAppointmentsGrid.ItemsSource = db.TAppointments.ToList();
                 HomePatientGrid.ItemsSource = db.TPatients.ToList();
 
-                //var acount = appointments.Count();
-                //var pcount = patients.Count();
-                AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
+                UserTitle.Text = "Welcome, " + App.user.Name;
                 PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
 
             }
 
-
             if (login.NameBox.Text != null)
             {
-                Title.Text = "Logged in as " + App.user.Name.ToUpper();
+                Title.Text = App.user.Name.ToUpper();
                 return;
             }
             else
             {
 
-                Title.Text = "Logged in as guest";
+                Title.Text = "Guest";
                 return;
             }
         }
 
+        private void AgendaBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

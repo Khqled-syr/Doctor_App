@@ -7,9 +7,6 @@ using System.Windows;
 
 namespace Final_Project
 {
-    /// <summary>
-    /// Interaction logic for SearchWindow.xaml
-    /// </summary>
     public partial class PatientsWindow : Window
     {
         public PatientsWindow()
@@ -18,7 +15,7 @@ namespace Final_Project
             OnStart();
 
         }
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
             HomeWindow home = new HomeWindow();
 
@@ -26,7 +23,7 @@ namespace Final_Project
             this.Close();
         }
 
-        private void Logout_Button_Click(object sender, RoutedEventArgs e)
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
 
             LoginWindow login = new LoginWindow();
@@ -35,11 +32,16 @@ namespace Final_Project
             this.Close();
         }
 
-        private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
+        private void AppointmentsBtn_Click(object sender, RoutedEventArgs e)
         {
+            AppointmentsWindow appointments = new AppointmentsWindow();
+
+            appointments.Show();
+            this.Close();
 
         }
-        private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
+
+        private void AgendaBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -62,7 +64,6 @@ namespace Final_Project
 
 
                     MessageBox.Show($"Succesfully deleted {selectedPatient.Name}.");
-
                 }
                 catch
                 {
@@ -99,6 +100,15 @@ namespace Final_Project
                 }
             }
         }
+        private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
         private void OnStart()
         {
@@ -109,7 +119,6 @@ namespace Final_Project
             {
 
                 PatientDataGrid.ItemsSource = db.TPatients.ToList();
-
                 PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
 
             }
@@ -145,8 +154,9 @@ namespace Final_Project
 
             //}
 
-            
 
         }
+
+
     }
 }

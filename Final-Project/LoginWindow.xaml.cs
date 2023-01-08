@@ -10,6 +10,7 @@ namespace Final_Project
 {
     public partial class LoginWindow : Window
     {
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -30,10 +31,11 @@ namespace Final_Project
                 if (BC.Verify(passwordBox.Password, user.Password))
                 {
                     App.user = user;
-                    HomeWindow home = new HomeWindow();
+                    /*HomeWindow home = new HomeWindow();*/
+                     //App.home = new HomeWindow();
 
-                    home.Show();
                     this.Close();
+                    App.home.Show();
                 }
                 else
                 {
@@ -61,8 +63,9 @@ namespace Final_Project
                     if (BC.Verify(passwordBox.Password, user.Password))
                     {
                         App.user = user;
+                        //HomeWindow home = new HomeWindow();
                         HomeWindow home = new HomeWindow();
-                        
+
                         this.Close();
                         home.Show();
                     }

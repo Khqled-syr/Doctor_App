@@ -58,7 +58,7 @@
 
                         <StackPanel DockPanel.Dock="Top">
 
-                            <Button Style="{StaticResource MenuButton}" Click="HomeButton_Click" FontFamily="SimSun">
+                            <Button Style="{StaticResource MenuButton}" Click="HomeBtn_Click" FontFamily="SimSun">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="Home" FontFamily="Myanmar Text"/>
@@ -76,24 +76,27 @@
 
                             <Separator Margin="10" DockPanel.Dock="Top" Height="0.8" Background="LightBlue"/>
 
-                            <Button Style="{StaticResource MenuButton}">
+                            <Button Style="{StaticResource MenuButton}" Click="AgendaBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Calendar" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="My Agenda" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.8" Background="LightBlue"/>
-                            
-                            <Button Style="{StaticResource MenuButton}">
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="LightBlue"/>
+
+
+
+                            <Button Style="{StaticResource MenuButton}" Click="AppointmentsBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TableChair" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="Appointments" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
 
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.1" Background="LightBlue"/>
 
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.8" Background="LightBlue"/>
+
 
 
                             <Button Style="{StaticResource MenuButton}">
@@ -102,12 +105,9 @@
                                     <TextBlock Text="Add new patient" FontFamily="Myanmar Text"/>
                                 </StackPanel>
                             </Button>
-
-
-
                         </StackPanel>
 
-                        <Button Style="{StaticResource MenuButton}" Click="Logout_Button_Click" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
+                        <Button Style="{StaticResource MenuButton}" Click="LogoutBtn_Click" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource DashButtonIcon}"/>
                                 <TextBlock Text="Logout"/>
@@ -131,26 +131,26 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Width="300" HorizontalAlignment="Right">
-                    <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1"
-                           Visibility="{Binding ElementName=TextBoxSearch}" />
-
-                    <TextBox Name="TextBoxSearch" Style="{StaticResource SearchTextBox}"></TextBox>
-                    <Button Width="15" Height="15" VerticalAlignment="Center" Click="SearchBtn_Click" Margin="0 0 15 0" HorizontalAlignment="Right" Style="{StaticResource AddButton}"/>
-                </Grid>
-
                 <!--Page Title-->
                 <TextBlock x:Name="PatientsCount" Text="Patients" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
                 <!--Add Button-->
-
-                <Button Style="{StaticResource AddButton}" Click="AddPatientBtn_Click">
+                <!--<Button Style="{StaticResource AddButton}" Click="AddPatientBtn_Click">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                         <TextBlock Text="Add New Patient"/>
                     </StackPanel>
-                </Button>
+                </Button>-->
+
+                <!--Filter Textbox-->
+                <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
+                    <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                           Panel.ZIndex="1" Text="Search in Patient ..."
+                           Visibility="{Binding ElementName=FilterTextBox}" />
+
+                    <TextBox Name="TextBoxFilter" Style="{StaticResource FilterTextBox}"/>
+                </Grid>
+
 
 
                 <!--Seprator-->

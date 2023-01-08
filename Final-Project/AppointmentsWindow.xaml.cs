@@ -14,12 +14,10 @@ namespace Final_Project
 
             this.WindowState = WindowState.Maximized;
 
-
             using (var db = new databaseContext())
             {
                 PatientDataGrid.ItemsSource = db.TAppointments.ToList();
                 AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
-
             }
         }
 
@@ -35,20 +33,18 @@ namespace Final_Project
             }
             else
             {
-
                 MessageBox.Show("Please Login first to enter..");
                 return;
             }
         }
 
 
-        private async void Logout_Button_Click(object sender, RoutedEventArgs e)
+        private void Logout_Button_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow login = new LoginWindow();
-            
+
             this.Close();
             login.Show();
-            
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
