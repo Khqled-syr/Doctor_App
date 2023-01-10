@@ -6,7 +6,7 @@
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final_Project"
-        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="Transparent" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="LightBlue" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="Images/calendar.png">
 
     <Border Background="AliceBlue" CornerRadius="30">
         <Grid>
@@ -41,16 +41,15 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock x:Name="Title" Text="Admin"  Foreground="White" FontSize="24"
+                        <TextBlock x:Name="Title" Text="Admin"  Foreground="LightBlue" FontSize="24"
                                    DockPanel.Dock="Top" Margin="6,25,0,10" Height="29" FontWeight="Bold" FontFamily="Arial Rounded MT Bold" TextAlignment="Center">
                             <TextBlock.Effect>
                                 <DropShadowEffect/>
                             </TextBlock.Effect>
                         </TextBlock>
-
-
+                        
                         <!--Menu seperator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
+                        <Separator Margin="1" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
 
 
                         <!--Menu Button-->
@@ -58,7 +57,7 @@
                             <Button Style="{StaticResource MenuButton}" Background="#7e5fdc" >
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Home" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Home"/>
                                 </StackPanel>
                             </Button>
 
@@ -67,7 +66,7 @@
                             <Button Style="{StaticResource MenuButton}" Click="PatientsBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Account" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Patients" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Patients"/>
                                 </StackPanel>
                             </Button>
 
@@ -77,7 +76,7 @@
                             <Button Style="{StaticResource MenuButton}" Click="AgendaBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Calendar" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="My Agenda" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="My Agenda"/>
                                 </StackPanel>
                             </Button>
 
@@ -88,7 +87,7 @@
                             <Button Style="{StaticResource MenuButton}" Click="AppointmentsBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TableChair" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Appointments" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Appointments"/>
                                 </StackPanel>
                             </Button>
 
@@ -100,41 +99,37 @@
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="NewBox" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Add new patient" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Add new patient"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
 
                         <Button Style="{StaticResource MenuButton}" Click="LogoutBtn_Click" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource DashButtonIcon}"/>
-                                <TextBlock Text="Logout"/>
+                                <Icon:PackIconMaterial Kind="Logout" Foreground="Red" Style="{StaticResource DashButtonIcon}"/>
+                                <TextBlock Text="Logout" Foreground="Red"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>
                 </Border>
             </Grid>
-
+            
             <!--Main Section-->
             <Grid Grid.Column="1" Margin="30,30,20,332">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+                <Calendar Margin="177,124,174,67" SelectedDate=" 2/15/2023 " DisplayDate="2/15/2023" DisplayDateStart="1/10/2023" DisplayDateEnd="4/18/2023"/>
 
 
                 <TextBlock x:Name="UserTitle" Text="Welcome, " Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
-                <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
+                <!--<Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>-->
+
+
+                
+
+
             </Grid>
             
             <!--Patients section-->
-
-                <Grid Grid.Column="1" Margin="30,388,20,20">
+                <Grid Grid.Column="1" Margin="30,411,20,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -144,6 +139,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
+                    
 
 
                 <!--Page Title-->

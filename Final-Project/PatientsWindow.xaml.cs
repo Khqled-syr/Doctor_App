@@ -125,16 +125,16 @@ namespace Final_Project
 
             if (login.NameBox.Text != null)
             {
-                Title.Text = "Logged in as " + App.user.Name.ToUpper();
+                Title.Text = App.user.Name.ToUpper();
                 return;
             }
             else
             {
 
-                MessageBox.Show("Please Login first to enter..");
+                Title.Text = "Guest";
                 return;
             }
-        }
+    }
 
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {

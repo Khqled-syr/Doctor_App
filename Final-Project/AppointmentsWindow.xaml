@@ -42,34 +42,32 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock x:Name="Title" Text="" Foreground="White" FontSize="20"
-                                   DockPanel.Dock="Top" TextAlignment="Left" Margin="5 25 0 10" FontFamily="Bahnschrift" Height="29">
+                        <TextBlock x:Name="Title" Text="Admin"  Foreground="LightBlue" FontSize="24"
+                                   DockPanel.Dock="Top" Margin="6,25,0,10" Height="29" FontWeight="Bold" FontFamily="Arial Rounded MT Bold" TextAlignment="Center">
                             <TextBlock.Effect>
                                 <DropShadowEffect/>
                             </TextBlock.Effect>
                         </TextBlock>
 
-
                         <!--Menu seperator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
+                        <Separator Margin="1" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
 
                         <!--Menu Button-->
 
                         <StackPanel DockPanel.Dock="Top">
 
-                            <Button Style="{StaticResource MenuButton}" Click="HomeButton_Click" FontFamily="SimSun">
+                            <Button Style="{StaticResource MenuButton}" Click="HomeButton_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Home" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Home"/>
                                 </StackPanel>
                             </Button>
-      
-                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
-                            <Button Style="{StaticResource MenuButton}">
+                            <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
+                            <Button Style="{StaticResource MenuButton}" Click="PatientsBtn_Click">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="AccountSearch" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Search" FontFamily="Myanmar Text"/>
+                                    <Icon:PackIconMaterial Kind="Account" Style="{StaticResource DashButtonIcon}"/>
+                                    <TextBlock Text="Patients"/>
                                 </StackPanel>
                             </Button>
                             
@@ -78,7 +76,7 @@
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Calendar" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="My Agenda" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="My Agenda"/>
                                 </StackPanel>
                             </Button>
 
@@ -87,7 +85,7 @@
                             <Button Style="{StaticResource MenuButton}" Background="#7e5fdc">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="TableChair" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Appointments" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Appointments"/>
                                 </StackPanel>
                             </Button>
 
@@ -96,7 +94,7 @@
                             <Button Style="{StaticResource MenuButton}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="NewBox" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Add new patient" FontFamily="Myanmar Text"/>
+                                    <TextBlock Text="Add new patient"/>
                                 </StackPanel>
                             </Button>
 
@@ -104,10 +102,10 @@
 
                         </StackPanel>
 
-                        <Button Style="{StaticResource MenuButton}" Click="Logout_Button_Click" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
+                        <Button Style="{StaticResource MenuButton}" Click="LogoutBtn_Click" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
                             <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource DashButtonIcon}"/>
-                                <TextBlock Text="Logout"/>
+                                <Icon:PackIconMaterial Kind="Logout" Foreground="Red" Style="{StaticResource DashButtonIcon}"/>
+                                <TextBlock Text="Logout" Foreground="Red"/>
                             </StackPanel>
                         </Button>
                     </DockPanel>

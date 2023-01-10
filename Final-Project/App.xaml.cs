@@ -14,6 +14,7 @@ namespace Final_Project
         public static LoginWindow login;
         public static HomeWindow home;
 
+        ShutdownMode shutdown = ShutdownMode.OnLastWindowClose;
 
     }
 }

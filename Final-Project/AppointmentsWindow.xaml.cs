@@ -11,7 +11,12 @@ namespace Final_Project
         {
             InitializeComponent();
             OnStart();
+        }
 
+
+        private void OnStart()
+        {
+            LoginWindow login = new LoginWindow();
             this.WindowState = WindowState.Maximized;
 
             using (var db = new databaseContext())
@@ -19,27 +24,22 @@ namespace Final_Project
                 PatientDataGrid.ItemsSource = db.TAppointments.ToList();
                 AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
             }
-        }
-
-
-        private void OnStart()
-        {
-            LoginWindow login = new LoginWindow();
 
             if (login.NameBox.Text != null)
             {
-                Title.Text = "Logged in as " + App.user.Name.ToUpper();
+                Title.Text = App.user.Name.ToUpper();
                 return;
             }
             else
             {
-                MessageBox.Show("Please Login first to enter..");
+
+                Title.Text = "Guest";
                 return;
             }
         }
 
 
-        private void Logout_Button_Click(object sender, RoutedEventArgs e)
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow login = new LoginWindow();
 
@@ -52,6 +52,14 @@ namespace Final_Project
             HomeWindow home = new HomeWindow();
 
             home.Show();
+            this.Close();
+        }
+
+        private void PatientsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PatientsWindow patients = new PatientsWindow();
+
+            patients.Show();
             this.Close();
         }
     }
