@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Final_Project
+namespace Final_Project.Databases
 {
     public partial class TUser
     {

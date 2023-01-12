@@ -9,16 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="DataBase\**" />
-    <EmbeddedResource Remove="DataBase\**" />
-    <None Remove="DataBase\**" />
-    <Page Remove="DataBase\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="calendar.png" />
     <None Remove="database.db" />
-    <None Remove="home.png" />
     <None Remove="HomeWindow.xaml~RF738017a.TMP" />
     <None Remove="IMG_4354.JPG" />
     <None Remove="mwxofkxe.02a~" />
@@ -40,15 +31,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Images\calendar.png" />
-    <Resource Include="Images\home.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\" />
   </ItemGroup>
 
 </Project>

@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
-             StartupUri="LoginWindow.xaml"
-             ShutdownMode="OnLastWindowClose">
+             StartupUri="Classes/LoginWindow.xaml">
     <Application.Resources>
 
         <Style x:Key="TitleText" TargetType="TextBlock">

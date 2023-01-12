@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Final_Project
+namespace Final_Project.Databases
 {
     public partial class databaseContext : DbContext
     {

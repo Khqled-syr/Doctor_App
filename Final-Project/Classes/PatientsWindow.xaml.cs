@@ -1,7 +1,6 @@
-﻿using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
+﻿using Final_Project.Databases;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 
@@ -107,8 +106,9 @@ namespace Final_Project
             appointments.Show();
             this.Close();
 
-
             TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
+            long selectedUser = App.user.UserId;
+
 
             using (var db = new databaseContext())
             {
@@ -119,19 +119,20 @@ namespace Final_Project
 
                 try
                 {
-                    db.TAppointments.Add(new TAppointment(day, Convert.ToDateTime(date), selectedPatient.PatientId, 1));
+                    Debug.WriteLine(selectedUser);
+                    db.TAppointments.Add(new TAppointment(day, date, selectedPatient.PatientId, selectedUser));
                     db.SaveChanges();
                     appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
                     appointments.AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
 
 
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("ERROR" + ex);
                 }
 
-                }
+            }
 
         }
         private void PatientEditBtn_Click(object sender, RoutedEventArgs e)

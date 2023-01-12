@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Final_Project.Databases;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Final_Project
@@ -32,7 +33,6 @@ namespace Final_Project
                 {
                     App.user = user;
                     HomeWindow home = new HomeWindow();
-                     //App.home = new HomeWindow();
 
                     this.Close();
                     home.Show();
@@ -64,7 +64,6 @@ namespace Final_Project
                     if (BC.Verify(passwordBox.Password, user.Password))
                     {
                         App.user = user;
-                        //HomeWindow home = new HomeWindow();
                         HomeWindow home = new HomeWindow();
 
                         this.Close();
