@@ -149,7 +149,7 @@
                 </Grid>
 
                 <!--Patient Data Grid-->
-                <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="PatientDataGrid" Style="{DynamicResource DataGridStyle1}">
+                <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="AppointmentsDataGrid" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn Header="C" CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                             <DataGridCheckBoxColumn.HeaderTemplate>
@@ -173,8 +173,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding Date}" FontSize="9" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Patient_ID" Binding="{Binding PatientId}" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Doctor_ID" Binding="{Binding UserId}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Patient_ID" Binding="{Binding }" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Doctor_ID" Binding="{Binding }" IsReadOnly="True" Width="*"/>
                         <DataGridTemplateColumn Header="Options" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

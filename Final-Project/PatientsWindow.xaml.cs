@@ -77,9 +77,8 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-                //var iDBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the ID", "Add patient", "Full Name");
-                var nameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the Full Name", "Add patient", "Full Name");
-                var numberBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the number", "Add patient", "Number");
+                var nameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the full name", "Add patient", "Full Name");
+                var numberBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the phone number", "Add patient", "Phone Number");
                 var emailBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the email", "Add patient", "Email");
                 var addressBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the address", "Add patient", "address");
                 var ageBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the age", "Add patient", "Age");
@@ -95,13 +94,44 @@ namespace Final_Project
                 {
                     if (nameBox == null)
                     {
-                        MessageBox.Show("ERROR" + ex.Message); return;
+                        MessageBox.Show("ERROR" + ex.Message);
+                        return;
                     }
                 }
             }
         }
         private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
         {
+            AppointmentsWindow appointments = new AppointmentsWindow();
+
+            appointments.Show();
+            this.Close();
+
+
+            TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
+
+            using (var db = new databaseContext())
+            {
+
+
+                var day = Microsoft.VisualBasic.Interaction.InputBox($"Enter the day", $"make an appointment for {selectedPatient.Name}", "Day");
+                var date = Microsoft.VisualBasic.Interaction.InputBox("Enter the date", $"make an appointment for {selectedPatient.Name}", "Date");
+
+                try
+                {
+                    db.TAppointments.Add(new TAppointment(day, Convert.ToDateTime(date), selectedPatient.PatientId, 1));
+                    db.SaveChanges();
+                    appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
+                    appointments.AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
+
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show("ERROR" + ex);
+                }
+
+                }
 
         }
         private void PatientEditBtn_Click(object sender, RoutedEventArgs e)

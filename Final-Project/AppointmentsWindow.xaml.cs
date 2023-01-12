@@ -14,6 +14,8 @@ namespace Final_Project
         }
 
 
+
+
         private void OnStart()
         {
             LoginWindow login = new LoginWindow();
@@ -21,7 +23,7 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-                PatientDataGrid.ItemsSource = db.TAppointments.ToList();
+                AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
                 AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
             }
 

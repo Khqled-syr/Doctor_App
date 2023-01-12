@@ -134,12 +134,12 @@
                 <TextBlock x:Name="PatientsCount" Text="Patients" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
 
                 <!--Add Button-->
-                <!--<Button Style="{StaticResource AddButton}" Click="AddPatientBtn_Click">
+                <Button Style="{StaticResource AddButton}" Click="AddPatientBtn_Click">
                     <StackPanel Orientation="Horizontal">
                         <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                         <TextBlock Text="Add New Patient"/>
                     </StackPanel>
-                </Button>-->
+                </Button>
 
                 <!--Filter Textbox-->
                 <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">

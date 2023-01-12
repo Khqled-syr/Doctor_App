@@ -31,11 +31,12 @@ namespace Final_Project
                 if (BC.Verify(passwordBox.Password, user.Password))
                 {
                     App.user = user;
-                    /*HomeWindow home = new HomeWindow();*/
+                    HomeWindow home = new HomeWindow();
                      //App.home = new HomeWindow();
 
                     this.Close();
-                    App.home.Show();
+                    home.Show();
+
                 }
                 else
                 {
