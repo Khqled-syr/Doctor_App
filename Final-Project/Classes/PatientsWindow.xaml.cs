@@ -1,4 +1,4 @@
-﻿using Final_Project.Databases;
+﻿using Final_Project.DataBase;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -112,20 +112,15 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-
-
                 var day = Microsoft.VisualBasic.Interaction.InputBox($"Enter the day", $"make an appointment for {selectedPatient.Name}", "Day");
                 var date = Microsoft.VisualBasic.Interaction.InputBox("Enter the date", $"make an appointment for {selectedPatient.Name}", "Date");
 
                 try
                 {
-                    Debug.WriteLine(selectedUser);
                     db.TAppointments.Add(new TAppointment(day, date, selectedPatient.PatientId, selectedUser));
                     db.SaveChanges();
                     appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
                     appointments.AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
-
-
                 }
                 catch (Exception ex)
                 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Final_Project.Databases
+namespace Final_Project.DataBase
 {
     public partial class databaseContext : DbContext
     {
@@ -40,6 +40,12 @@ namespace Final_Project.Databases
                 entity.HasIndex(e => e.AppointmentId, "IX_t_appointments_appointment_ID")
                     .IsUnique();
 
+                entity.HasIndex(e => e.PatientName, "IX_t_appointments_patient_Name")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.UserName, "IX_t_appointments_user_Name")
+                    .IsUnique();
+
                 entity.Property(e => e.AppointmentId).HasColumnName("appointment_ID");
 
                 entity.Property(e => e.Date).HasColumnName("date");
@@ -48,7 +54,11 @@ namespace Final_Project.Databases
 
                 entity.Property(e => e.PatientId).HasColumnName("patient_ID");
 
+                entity.Property(e => e.PatientName).HasColumnName("patient_Name");
+
                 entity.Property(e => e.UserId).HasColumnName("user_ID");
+
+                entity.Property(e => e.UserName).HasColumnName("user_Name");
 
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.TAppointments)

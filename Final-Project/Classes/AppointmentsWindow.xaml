@@ -181,8 +181,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding Date}" FontSize="9" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Patient_ID" Binding="{Binding PatientId}"  IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Doctor_ID" Binding="{Binding UserId}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Patient" Binding="{Binding PatientName}"  IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Doctor" Binding="{Binding UserName}" IsReadOnly="True" Width="*"/>
                         <DataGridTemplateColumn Header="Options" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Final_Project.Databases;
+using Final_Project.DataBase;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Final_Project
@@ -15,6 +14,7 @@ namespace Final_Project
         public LoginWindow()
         {
             InitializeComponent();
+            //Scaffold-DbContext "DataSource=database.db" Microsoft.EntityFrameworkCore.Sqlite
         }
 
         private void Login_Button_Click(object sender, RoutedEventArgs e)
@@ -23,7 +23,7 @@ namespace Final_Project
             {
                 TUser? user = db.TUsers.FirstOrDefault(user => user.Name.ToLower() == NameBox.Text.ToLower());
                 if (user == null)
-                {
+                {   
                     Results.Content = "Password or Username is not correct, please try again.";
                     passwordBox.Clear();
                     return;

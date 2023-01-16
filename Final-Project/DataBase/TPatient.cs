@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Final_Project.DataBase;
 
-namespace Final_Project.Databases
+namespace Final_Project
 {
     public partial class TPatient
     {
@@ -10,15 +11,15 @@ namespace Final_Project.Databases
             TAppointments = new HashSet<TAppointment>();
         }
 
+
         public long PatientId { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; } = null!;
         public long? Number { get; set; }
         public string? Email { get; set; }
         public string? Address { get; set; }
         public long? Age { get; set; }
 
         public virtual ICollection<TAppointment> TAppointments { get; set; }
-
 
 
         public TPatient(string? name, long? number, string? email, string? address, long? age)
@@ -30,6 +31,4 @@ namespace Final_Project.Databases
             Age = age;
         }
     }
-
-
 }
