@@ -5,8 +5,9 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Final_Project"
-        mc:Ignorable="d" Background="Transparent" WindowStartupLocation="CenterOwner" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize"> <!--Icon="/Images/calendar.png">-->
-        
+        mc:Ignorable="d" Background="Transparent" WindowStartupLocation="CenterOwner" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize">
+    <!--Icon="/Images/calendar.png">-->
+
 
 
     <Border Background="AliceBlue" CornerRadius="30">
@@ -42,14 +43,28 @@
                         </Border>
 
                         <!--Menu Titles-->
-                        <TextBlock x:Name="Title" Text="Admin"  Foreground="LightBlue" FontSize="24"
-                                   DockPanel.Dock="Top" Margin="6,25,0,10" Height="29" FontWeight="Bold" FontFamily="Arial Rounded MT Bold" TextAlignment="Center">
+                        <!--<TextBlock x:Name="Title" Text="Admin"  Foreground="LightBlue" FontSize="24"
+                                   DockPanel.Dock="Top" Margin="6,25,0,10" Height="29" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center">
                             <TextBlock.Effect>
                                 <DropShadowEffect/>
                             </TextBlock.Effect>
+                        </TextBlock>-->
+
+                        <TextBlock x:Name="Title"
+                                   DockPanel.Dock="Top" Margin="6,25,0,10" Height="29" FontWeight="Bold" FontFamily="Comic Sans MS" TextAlignment="Center">
+                            <Button Click="InstgramBtn_Click">
+                                <Icon:PackIconMaterial Kind="Instagram" Height="25" Width="25" />
+                            </Button>
+                            <Button Click="GitBtn_Click">
+                                <Icon:PackIconMaterial Kind="Github" Height="25" Width="25" />
+                            </Button>
+                            <Button Click="EmailBtn_Click">
+                                <Icon:PackIconMaterial Kind="Gmail" Height="25" Width="25" />
+                            </Button>
                         </TextBlock>
-                        
-                        
+
+
+
 
                         <!--Menu seperator-->
                         <Separator Margin="1" DockPanel.Dock="Top" Height="0.7" Background="Gray"/>
@@ -61,7 +76,7 @@
                             <Button Style="{StaticResource MenuButton}" Click="HomeButton_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource DashButtonIcon}"/>
-                                    <TextBlock Text="Home"/>
+                                    <TextBlock Text="Home" FontFamily="Comic Sans MS"/>
                                 </StackPanel>
                             </Button>
 
@@ -72,7 +87,7 @@
                                     <TextBlock Text="Patients"/>
                                 </StackPanel>
                             </Button>
-                            
+
                             <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
                             <Button Style="{StaticResource MenuButton}">
@@ -129,16 +144,8 @@
                 </Grid.RowDefinitions>
 
                 <!--Page Title-->
-                <TextBlock x:Name="AppointmentsCount" Text="Appointments" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="#121518" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="AppointmentsCount" Text="Appointments" Grid.Row="1" FontSize="35" FontWeight="Bold" Margin="0 20 0 0" Foreground="DarkCyan" HorizontalAlignment="Left" FontFamily="Comic Sans MS"/>
 
-
-                <Button Style="{StaticResource AddButton}" Click="MakeAppointmentBtn_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                        <TextBlock Text="Make an appointment"/>
-                    </StackPanel>
-                </Button>
-                
                 <!--Seprator-->
                 <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
 
@@ -172,7 +179,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
                                         <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="{Binding Day}">
-                                            <Icon:PackIconMaterial Kind="Account" Background="Blue" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                            <Icon:PackIconMaterial Kind="Clock" Background="LightBlue" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
                                         </Border>
                                         <TextBlock Text="{Binding Day}" VerticalAlignment="Center">
                                         </TextBlock>
@@ -181,8 +188,8 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn Header="Date" Binding="{Binding Date}" FontSize="9" IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Patient" Binding="{Binding PatientName}"  IsReadOnly="True" Width="*"/>
-                        <DataGridTextColumn Header="Doctor" Binding="{Binding UserName}" IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Patient" Binding="{Binding Patient.Name}"  IsReadOnly="True" Width="*"/>
+                        <DataGridTextColumn Header="Doctor" Binding="{Binding User.Name}" IsReadOnly="True" Width="*"/>
                         <DataGridTemplateColumn Header="Options" IsReadOnly="True" Width="auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -193,9 +200,9 @@
                                         <Button Margin="5 0 0 0" Style="{StaticResource GridRemoveButton}" Click="AppointmentDeleteBtn_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource GridButtonIcon}"/>
                                         </Button>
-                                        <Button Margin="10 0 0 0" Style="{StaticResource AddButton}">
+                                        <!--<Button Margin="10 0 0 0" Style="{StaticResource AddButton}">
                                             <TextBlock Text="Make an appointment"/>
-                                        </Button>
+                                        </Button>-->
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

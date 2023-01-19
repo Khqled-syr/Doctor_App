@@ -48,8 +48,8 @@ namespace Final_Project
 
                 HomePatientGrid.ItemsSource = db.TPatients.ToList();
 
-                UserTitle.Text = "Welcome, " + App.user.Name;
-                PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
+                UserTitle.Text = App.user.Name.ToUpper();
+                AppointmentsCount.Text = $"Patients: {db.TAppointments.Count().ToString()}";
 
             }
 

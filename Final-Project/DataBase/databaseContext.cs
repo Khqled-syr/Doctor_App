@@ -40,12 +40,6 @@ namespace Final_Project.DataBase
                 entity.HasIndex(e => e.AppointmentId, "IX_t_appointments_appointment_ID")
                     .IsUnique();
 
-                entity.HasIndex(e => e.PatientName, "IX_t_appointments_patient_Name")
-                    .IsUnique();
-
-                entity.HasIndex(e => e.UserName, "IX_t_appointments_user_Name")
-                    .IsUnique();
-
                 entity.Property(e => e.AppointmentId).HasColumnName("appointment_ID");
 
                 entity.Property(e => e.Date).HasColumnName("date");
@@ -54,11 +48,7 @@ namespace Final_Project.DataBase
 
                 entity.Property(e => e.PatientId).HasColumnName("patient_ID");
 
-                entity.Property(e => e.PatientName).HasColumnName("patient_Name");
-
                 entity.Property(e => e.UserId).HasColumnName("user_ID");
-
-                entity.Property(e => e.UserName).HasColumnName("user_Name");
 
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.TAppointments)

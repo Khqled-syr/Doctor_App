@@ -12,6 +12,8 @@ namespace Final_Project
     public partial class App : Application
     {
         public static TUser? user;
+        public static LoginWindow login;
+        public static HomeWindow home;
 
         ShutdownMode shutdown = ShutdownMode.OnLastWindowClose;
 

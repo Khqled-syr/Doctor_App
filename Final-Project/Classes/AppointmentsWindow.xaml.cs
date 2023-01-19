@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using Final_Project.DataBase;
+using Microsoft.EntityFrameworkCore;
 
 namespace Final_Project
 {
@@ -52,7 +54,13 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-                AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
+                AppointmentsDataGrid.ItemsSource = db.TAppointments
+                    .Include(a => a.User)
+                    .ToList();
+                AppointmentsDataGrid.ItemsSource = db.TAppointments
+                        .Include(a => a.Patient)
+                        .ToList();
+
                 AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
             }
 
@@ -118,6 +126,19 @@ namespace Final_Project
                     MessageBox.Show($"Unable to delete {selectedAppointment.AppointmentId}.");
                 }
             }
+
+        }
+
+        private void InstgramBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void GitBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        } 
+        private void EmailBtn_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

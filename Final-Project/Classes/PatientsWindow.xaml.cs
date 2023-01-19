@@ -1,4 +1,6 @@
-﻿using Final_Project.DataBase;
+﻿using Final_Project.Annotations;
+using Final_Project.DataBase;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -99,6 +101,8 @@ namespace Final_Project
                 }
             }
         }
+        public TPatient selectedPatient;
+
         private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
         {
             AppointmentsWindow appointments = new AppointmentsWindow();
@@ -106,9 +110,10 @@ namespace Final_Project
             appointments.Show();
             this.Close();
 
+
+
             TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
             long selectedUser = App.user.UserId;
-
 
             using (var db = new databaseContext())
             {
@@ -119,7 +124,16 @@ namespace Final_Project
                 {
                     db.TAppointments.Add(new TAppointment(day, date, selectedPatient.PatientId, selectedUser));
                     db.SaveChanges();
-                    appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
+
+                    appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments
+                        .Include(a => a.User)
+                        .ToList();
+                    
+                    appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments
+                        .Include(a => a.Patient)
+                        .ToList();
+
+
                     appointments.AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
                 }
                 catch (Exception ex)
