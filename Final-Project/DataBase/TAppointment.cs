@@ -5,31 +5,33 @@ namespace Final_Project.DataBase
 {
     public partial class TAppointment
     {
-        //private TUser selectedUser = App.user;
-        //private TPatient selectedPatient;
-
         public long AppointmentId { get; set; }
         public string? Day { get; set; }
         public string? Date { get; set; }
         public long? UserId { get; set; }
         public long? PatientId { get; set; }
+        public string? Description { get; set; }
 
         public virtual TPatient? Patient { get; set; }
         public virtual TUser? User { get; set; }
 
-        public TAppointment(string day, string date, long? patientId, long? userId)
+
+
+        public TAppointment(string date, string description, long? patientId, long? userId)
         {
-            Day = day;
             Date = date;
+            Description = description;
             UserId = userId;
             PatientId = patientId;
         }
-        public TAppointment(string day, string date, TPatient? patient, TUser? selectedUser)
+
+        public TAppointment(string date, string description, TPatient? patient, TUser? selectedUser)
         {
-            Day = day;
             Date = date;
+            Description = description;
             Patient = patient;
             User = selectedUser;
         }
+
     }
 }

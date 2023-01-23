@@ -5,7 +5,6 @@ namespace Final_Project.DataBase
 {
     public partial class TPatient
     {
-
         public TPatient()
         {
             TAppointments = new HashSet<TAppointment>();
@@ -20,6 +19,7 @@ namespace Final_Project.DataBase
 
         public virtual ICollection<TAppointment> TAppointments { get; set; }
 
+
         public TPatient(string? name, long? number, string? email, string? address, long? age)
         {
             Name = name;
@@ -28,6 +28,5 @@ namespace Final_Project.DataBase
             Address = address;
             Age = age;
         }
-
     }
 }

@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <None Remove="NewFolder\**" />
+    <Page Remove="NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Classes\home.png" />
     <None Remove="database.db" />
     <None Remove="HomeWindow.xaml~RF738017a.TMP" />
     <None Remove="IMG_4354.JPG" />
@@ -24,7 +32,12 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.117" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Classes\home.png" />
   </ItemGroup>
 
 </Project>

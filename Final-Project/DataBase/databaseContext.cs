@@ -46,6 +46,8 @@ namespace Final_Project.DataBase
 
                 entity.Property(e => e.Day).HasColumnName("day");
 
+                entity.Property(e => e.Description).HasColumnName("description");
+
                 entity.Property(e => e.PatientId).HasColumnName("patient_ID");
 
                 entity.Property(e => e.UserId).HasColumnName("user_ID");

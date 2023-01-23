@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using Final_Project.Classes;
+using System.Windows.Media;
+using System.Windows.Navigation;
 using Final_Project.DataBase;
 using Microsoft.EntityFrameworkCore;
 
@@ -49,7 +52,6 @@ namespace Final_Project
 
         private void OnStart()
         {
-            LoginWindow login = new LoginWindow();
             this.WindowState = WindowState.Maximized;
 
             using (var db = new databaseContext())
@@ -57,24 +59,43 @@ namespace Final_Project
                 AppointmentsDataGrid.ItemsSource = db.TAppointments
                     .Include(a => a.User)
                     .ToList();
+
                 AppointmentsDataGrid.ItemsSource = db.TAppointments
                         .Include(a => a.Patient)
                         .ToList();
 
                 AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
             }
+        }
 
-            if (login.NameBox.Text != null)
-            {
-                Title.Text = App.user.Name.ToUpper();
-                return;
-            }
-            else
-            {
 
-                Title.Text = "Guest";
-                return;
-            }
+
+        private void AddNewPatientBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddPatientPage patientPage = new AddPatientPage();
+            NavigationWindow window = new NavigationWindow();
+            window.Source = new Uri("/Classes/AddPatientPage.xaml", UriKind.Relative);
+            window.ShowsNavigationUI = false;
+            window.WindowState = WindowState.Maximized;
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.WindowStyle = System.Windows.WindowStyle.None;
+            window.Background = new SolidColorBrush(Colors.White);
+            window.Show();
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void GithubBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var uri = "https://github.com/Levaii";
+            var psi = new System.Diagnostics.ProcessStartInfo();
+            psi.UseShellExecute = true;
+            psi.FileName = uri;
+            System.Diagnostics.Process.Start(psi);
+        }
+
+        private void EmailBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("countrykhaled@gmail.com", "Feel free to email me!");
         }
 
 
@@ -126,19 +147,6 @@ namespace Final_Project
                     MessageBox.Show($"Unable to delete {selectedAppointment.AppointmentId}.");
                 }
             }
-
-        }
-
-        private void InstgramBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void GitBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        } 
-        private void EmailBtn_Click(object sender, RoutedEventArgs e)
-        {
 
         }
     }

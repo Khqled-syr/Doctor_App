@@ -1,15 +1,19 @@
-﻿using Final_Project.Annotations;
+﻿using Final_Project.Classes;
 using Final_Project.DataBase;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace Final_Project
 {
     public partial class PatientsWindow : Window
     {
+
+        public ObservableCollection<TPatient> patients { get; set; }
         public PatientsWindow()
         {
             InitializeComponent();
@@ -47,6 +51,22 @@ namespace Final_Project
 
         }
 
+
+
+        private void AddNewPatientBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddPatientPage patientPage = new AddPatientPage();
+            NavigationWindow window = new NavigationWindow();
+            window.Source = new Uri("/Classes/AddPatientPage.xaml", UriKind.Relative);
+            window.ShowsNavigationUI = false;
+            window.WindowState = WindowState.Maximized;
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.WindowStyle = System.Windows.WindowStyle.None;
+            window.Background = new SolidColorBrush(Colors.White);
+            window.Show();
+            this.Visibility = Visibility.Hidden;
+        }
+
         private void PatientDeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             if (PatientDataGrid.SelectedItem == null) return;
@@ -73,35 +93,21 @@ namespace Final_Project
             }
         }
 
+
         private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
         {
+            AddPatientPage patientPage= new AddPatientPage();
+            NavigationWindow window = new NavigationWindow();
+            window.Source = new Uri("/Classes/AddPatientPage.xaml", UriKind.Relative);
+            window.ShowsNavigationUI = false;
+            window.WindowState = WindowState.Maximized;
+            window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            window.WindowStyle = System.Windows.WindowStyle.None; 
+            window.Background = new SolidColorBrush(Colors.White);
+            window.Show();
+            //this.Visibility = Visibility.Hidden;
 
-            using (var db = new databaseContext())
-            {
-                var nameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the full name", "Add patient", "Full Name");
-                var numberBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the phone number", "Add patient", "Phone Number");
-                var emailBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the email", "Add patient", "Email");
-                var addressBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the address", "Add patient", "address");
-                var ageBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the age", "Add patient", "Age");
-
-                try
-                {
-                    db.TPatients.Add(new TPatient(nameBox, Convert.ToInt32(numberBox), emailBox, addressBox, Convert.ToInt32(ageBox)));
-                    db.SaveChanges();
-                    PatientDataGrid.ItemsSource = db.TPatients.ToList();
-                    PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
-                }
-                catch (Exception ex)
-                {
-                    if (nameBox == null)
-                    {
-                        MessageBox.Show("ERROR" + ex.Message);
-                        return;
-                    }
-                }
-            }
         }
-        public TPatient selectedPatient;
 
         private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -117,18 +123,18 @@ namespace Final_Project
 
             using (var db = new databaseContext())
             {
-                var day = Microsoft.VisualBasic.Interaction.InputBox($"Enter the day", $"make an appointment for {selectedPatient.Name}", "Day");
-                var date = Microsoft.VisualBasic.Interaction.InputBox("Enter the date", $"make an appointment for {selectedPatient.Name}", "Date");
+                var date = Microsoft.VisualBasic.Interaction.InputBox($"Enter the date", $"make an appointment for {selectedPatient.Name}", "Date");
+                var description = Microsoft.VisualBasic.Interaction.InputBox("Enter the description", $"make an appointment for {selectedPatient.Name}", "Description");
 
                 try
                 {
-                    db.TAppointments.Add(new TAppointment(day, date, selectedPatient.PatientId, selectedUser));
+                    db.TAppointments.Add(new TAppointment(date, description, selectedPatient.PatientId, selectedUser));
                     db.SaveChanges();
 
                     appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments
                         .Include(a => a.User)
                         .ToList();
-                    
+
                     appointments.AppointmentsDataGrid.ItemsSource = db.TAppointments
                         .Include(a => a.Patient)
                         .ToList();
@@ -144,8 +150,48 @@ namespace Final_Project
             }
 
         }
+
+
         private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
         {
+            
+ /*           try
+            {
+
+                var con = new System.Data.SQLite.SQLiteConnection();
+                var db = new databaseContext();
+
+
+
+
+                    con.ConnectionString = "DataSource= database.db";
+                    con.Open();
+
+
+                    TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
+                    //var newNameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the full name", "Add patient", "Full Name");
+
+
+                    System.Data.SQLite.SQLiteCommand com = new System.Data.SQLite.SQLiteCommand(con);
+
+
+                    //com.CommandText = "UPDATE t_patients;";
+                    //com.CommandText = $"SET name = 'test' WHERE name = 'wael';";
+
+                    
+                    com.CommandText = "DELETE FROM t_patients WHERE name = 'wael';";
+
+                    com.ExecuteNonQuery();
+                    con.Close();
+                    db.SaveChanges();
+                    PatientDataGrid.ItemsSource = db.TPatients.ToList();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("ERROR" + ex);
+            }*/
 
         }
 
@@ -162,41 +208,29 @@ namespace Final_Project
                 PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
 
             }
+        }
 
-            if (login.NameBox.Text != null)
-            {
-                Title.Text = App.user.Name.ToUpper();
-                return;
-            }
-            else
-            {
-
-                Title.Text = "Guest";
-                return;
-            }
-    }
-
-        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        private void GithubBtn_Click(object sender, RoutedEventArgs e)
         {
-            //string searchQuery = TextBoxSearch.Text;
-            //string textToSearch = "";
+            var uri = "https://github.com/Levaii";
+            var psi = new System.Diagnostics.ProcessStartInfo();
+            psi.UseShellExecute = true;
+            psi.FileName = uri;
+            System.Diagnostics.Process.Start(psi);
+        }
 
-
-            //List<string> searchResults = new List<string>();
-
-
-            //int searchIndex = textToSearch.IndexOf(searchQuery);
-            //while (searchIndex >= 0 )
-            //{
-            //    searchResults.Add(textToSearch.Substring(searchIndex, searchQuery.Length));
-
-            //    searchIndex = textToSearch.IndexOf(searchQuery, searchIndex + searchQuery.Length);
-
-            //}
-
-
+        private void EmailBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("countrykhaled@gmail.com", "Feel free to email me!");
         }
 
 
+        private void filterBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            var searchText = TextBoxFilter.Text;
+
+            var filteredData = patients.Where(n => n.Name.Contains(searchText));
+            PatientDataGrid.ItemsSource = filteredData;
+        }
     }
 }
