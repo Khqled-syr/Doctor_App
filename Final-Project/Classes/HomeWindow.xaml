@@ -124,7 +124,7 @@
 
             <!--Main Section-->
             <Grid Grid.Column="1" Margin="30,30,20,332">
-                <Calendar Margin="177,124,174,67" SelectedDate=" 2/15/2023 " DisplayDate="2/15/2023" DisplayDateStart="1/10/2023" DisplayDateEnd="4/18/2023"/>
+                <!--<Calendar Margin="177,124,174,67" SelectedDate=" 2/15/2023 " DisplayDate="2/15/2023" DisplayDateStart="1/10/2023" DisplayDateEnd="4/18/2023"/>-->
 
 
                 <TextBlock x:Name="UserTitle" Text="Welcome, " Grid.Row="1" FontFamily="Comic Sans MS"  FontSize="32" FontWeight="Bold" Margin="0 20 0 0" Foreground="DarkCyan" HorizontalAlignment="Left"/>
@@ -151,7 +151,7 @@
 
 
                 <!--Page Title-->
-                <TextBlock x:Name="AppointmentsCount" Text="Today's Appointments" Grid.Row="1" FontSize="32" FontWeight="Bold" FontFamily="Comic Sans MS" Margin="0 20 0 0" Foreground="DarkCyan" HorizontalAlignment="Left"/>
+                <TextBlock x:Name="AppointmentsCount" Text="Recent Appointments" Grid.Row="1" FontSize="32" FontWeight="Bold" FontFamily="Comic Sans MS" Margin="0 20 0 0" Foreground="DarkCyan" HorizontalAlignment="Left"/>
 
                 <!--Add Button-->
 

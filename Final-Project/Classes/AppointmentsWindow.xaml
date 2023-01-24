@@ -86,7 +86,7 @@
 
                             <Separator Margin="10" DockPanel.Dock="Top" Height="0.7" Background="LightBlue"/>
 
-                            <Button Style="{StaticResource MenuButton}">
+                            <Button Style="{StaticResource MenuButton}" Click="AgendaBtn_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Calendar" Style="{StaticResource DashButtonIcon}"/>
                                     <TextBlock Text="My Agenda"/>
@@ -179,15 +179,9 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource GridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource GridButtonIcon}"/>
-                                        </Button>
                                         <Button Margin="5 0 0 0" Style="{StaticResource GridRemoveButton}" Click="AppointmentDeleteBtn_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource GridButtonIcon}"/>
                                         </Button>
-                                        <!--<Button Margin="10 0 0 0" Style="{StaticResource AddButton}">
-                                            <TextBlock Text="Make an appointment"/>
-                                        </Button>-->
                                     </StackPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>

@@ -13,13 +13,19 @@ namespace Final_Project
     public partial class PatientsWindow : Window
     {
 
-        public ObservableCollection<TPatient> patients { get; set; }
+        private ObservableCollection<TPatient> initialData;
+
         public PatientsWindow()
         {
             InitializeComponent();
             OnStart();
 
+            //initialData = new ObservableCollection<TPatient>();
+
+
         }
+
+
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
             HomeWindow home = new HomeWindow();
@@ -48,6 +54,7 @@ namespace Final_Project
 
         private void AgendaBtn_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Coming Soon!");
 
         }
 
@@ -96,16 +103,16 @@ namespace Final_Project
 
         private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
         {
-            AddPatientPage patientPage= new AddPatientPage();
+            AddPatientPage patientPage = new AddPatientPage();
             NavigationWindow window = new NavigationWindow();
             window.Source = new Uri("/Classes/AddPatientPage.xaml", UriKind.Relative);
             window.ShowsNavigationUI = false;
             window.WindowState = WindowState.Maximized;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            window.WindowStyle = System.Windows.WindowStyle.None; 
+            window.WindowStyle = System.Windows.WindowStyle.None;
             window.Background = new SolidColorBrush(Colors.White);
             window.Show();
-            //this.Visibility = Visibility.Hidden;
+            this.Visibility = Visibility.Hidden;
 
         }
 
@@ -152,50 +159,6 @@ namespace Final_Project
         }
 
 
-        private void PatientEditBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
- /*           try
-            {
-
-                var con = new System.Data.SQLite.SQLiteConnection();
-                var db = new databaseContext();
-
-
-
-
-                    con.ConnectionString = "DataSource= database.db";
-                    con.Open();
-
-
-                    TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
-                    //var newNameBox = Microsoft.VisualBasic.Interaction.InputBox("Enter the full name", "Add patient", "Full Name");
-
-
-                    System.Data.SQLite.SQLiteCommand com = new System.Data.SQLite.SQLiteCommand(con);
-
-
-                    //com.CommandText = "UPDATE t_patients;";
-                    //com.CommandText = $"SET name = 'test' WHERE name = 'wael';";
-
-                    
-                    com.CommandText = "DELETE FROM t_patients WHERE name = 'wael';";
-
-                    com.ExecuteNonQuery();
-                    con.Close();
-                    db.SaveChanges();
-                    PatientDataGrid.ItemsSource = db.TPatients.ToList();
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("ERROR" + ex);
-            }*/
-
-        }
-
-
         private void OnStart()
         {
             LoginWindow login = new LoginWindow();
@@ -227,10 +190,22 @@ namespace Final_Project
 
         private void filterBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            var searchText = TextBoxFilter.Text;
 
-            var filteredData = patients.Where(n => n.Name.Contains(searchText));
-            PatientDataGrid.ItemsSource = filteredData;
+            /*            using (var db = new databaseContext())
+                        {
+
+                            var searchText = TextBoxFilter.Text;
+
+                            var filteredData = initialData.Where(x => x.Name.Contains(searchText));
+                            PatientDataGrid.ItemsSource = filteredData;
+
+
+                        }*/
+            if (!string.IsNullOrEmpty(TextBoxFilter.Text) && TextBoxFilter.Text.Length > 0)
+                Filter.Visibility = Visibility.Collapsed;
+            else
+                Filter.Visibility = Visibility.Visible;
+
         }
     }
 }

@@ -56,7 +56,7 @@ namespace Final_Project
             {
 
                 UserTitle.Text = App.user.Name.ToUpper();
-                AppointmentsCount.Text = $"Today's appointments: {db.TAppointments.Count().ToString()}";
+                AppointmentsCount.Text = $"Recent appointments: {db.TAppointments.Count().ToString()}";
 
 
                 HomePatientGrid.ItemsSource = db.TAppointments
@@ -75,11 +75,7 @@ namespace Final_Project
 
         private void AgendaBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            MyAgenda agenda = new MyAgenda();
-
-            agenda.Show();
-            this.Close();
+            MessageBox.Show("Coming Soon!");
 
         }
 

@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Final_Project"
+        xmlns:local="clr-namespace:Final_Project" xmlns:local1="clr-namespace:Final_Project.DataBase"
         mc:Ignorable="d" Background="Transparent" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="/Classes/home.png">
 
 
@@ -145,7 +145,7 @@
 
                 <!--Filter Textbox-->
                 <Grid Width="200" HorizontalAlignment="Right" Grid.Row="1">
-                    <TextBlock Margin="0 1 8 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                    <TextBlock x:Name="Filter" Margin="0 1 8 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text=" Search in Patient ..."
                            Visibility="{Binding ElementName=FilterTextBox}" />
                     <TextBox Name="TextBoxFilter" TextChanged="filterBox_TextChanged" Style="{StaticResource FilterTextBox}"/>
@@ -194,9 +194,6 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource GridEditButton}" Click="PatientEditBtn_Click">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource GridButtonIcon}"/>
-                                        </Button>
                                         <Button Margin="5 0 0 0" Style="{StaticResource GridRemoveButton}" Click="PatientDeleteBtn_Click">
                                             <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource GridButtonIcon}"/>
                                         </Button>

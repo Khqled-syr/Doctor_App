@@ -19,33 +19,9 @@ namespace Final_Project
         }
 
 
-        private void MakeAppointmentBtn_Click(object sender, RoutedEventArgs e)
+        private void AgendaBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            PatientsWindow patients = new PatientsWindow();
-            TPatient selectedPatient = (TPatient)patients.PatientDataGrid.SelectedItem;
-
-/*            using (var db = new databaseContext())
-            {
-
-                var day = Microsoft.VisualBasic.Interaction.InputBox($"Enter the day", $"make an appointment", "Day");
-                var date = Microsoft.VisualBasic.Interaction.InputBox("Enter the date", $"make an appointment", "Date");
-
-                try
-                {
-                    db.TAppointments.Add(new TAppointment(day, date));
-                    db.SaveChanges();
-                    AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
-                    AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("ERROR" + ex);
-                }
-
-            }*/
+            MessageBox.Show("Coming Soon!");
 
         }
 
@@ -137,7 +113,7 @@ namespace Final_Project
                     db.SaveChanges();
                     AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
                     AppointmentsDataGrid.Items.Refresh();
-                    PatientsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
+                    AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
 
 
                     MessageBox.Show($"Succesfully deleted {selectedAppointment.AppointmentId} for patient: {selectedAppointment.PatientId}.");

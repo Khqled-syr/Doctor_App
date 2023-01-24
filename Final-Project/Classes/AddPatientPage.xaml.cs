@@ -1,6 +1,7 @@
 ﻿using Final_Project.DataBase;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,11 +14,11 @@ namespace Final_Project.Classes
             InitializeComponent();
         }
 
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
+        private async void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             PatientsWindow patients = new PatientsWindow();
             patients.Visibility = Visibility.Visible;
-            patients.PatientsFrame.Refresh();
+            await Task.Delay(1000);
             Window win = (Window)this.Parent;
             win.Close();
         }
@@ -31,7 +32,7 @@ namespace Final_Project.Classes
             {
                 if (string.IsNullOrEmpty(NameTextBox.Text) && NameTextBox.Text.Length == 0 || string.IsNullOrEmpty(AgeTextBox.Text) && AgeTextBox.Text.Length == 0 || string.IsNullOrEmpty(NumberTextBox.Text) && NumberTextBox.Text.Length == 0 || string.IsNullOrEmpty(EmailTextBox.Text) && EmailTextBox.Text.Length == 0 || string.IsNullOrEmpty(AddressTextBox.Text) && AddressTextBox.Text.Length == 0)
                 {
-                    NotifyLabel.Content = $"Please fill in all values.";
+                    NotifyLabel.Content = $"Make sure to fill in all the requirements!";
                     return;
                 }
                 else
@@ -40,7 +41,7 @@ namespace Final_Project.Classes
                     if(!int.TryParse(NumberTextBox.Text, out parsedValue) || !int.TryParse(AgeTextBox.Text, out parsedValue))
                     {
 
-                        NotifyLabel.Content = $"Please make sure to enter the right type!";
+                        NotifyLabel.Content = "Age or number is not correct!";
                         return;
                     }
                     else
@@ -62,6 +63,7 @@ namespace Final_Project.Classes
                 }
             }
         }
+
 
 
         private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
