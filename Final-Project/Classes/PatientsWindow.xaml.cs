@@ -13,18 +13,12 @@ namespace Final_Project
     public partial class PatientsWindow : Window
     {
 
-        private ObservableCollection<TPatient> initialData;
-
         public PatientsWindow()
         {
             InitializeComponent();
             OnStart();
-
-            //initialData = new ObservableCollection<TPatient>();
-
-
+            GetFilteredPatients();
         }
-
 
         private void HomeBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +53,6 @@ namespace Final_Project
         }
 
 
-
         private void AddNewPatientBtn_Click(object sender, RoutedEventArgs e)
         {
             AddPatientPage patientPage = new AddPatientPage();
@@ -78,7 +71,7 @@ namespace Final_Project
         {
             if (PatientDataGrid.SelectedItem == null) return;
 
-            TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
+            TPatient selectedPatient = (TPatient) PatientDataGrid.SelectedItem;
 
             using (var db = new databaseContext())
             {
@@ -99,7 +92,6 @@ namespace Final_Project
                 }
             }
         }
-
 
         private void AddPatientBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -125,13 +117,15 @@ namespace Final_Project
 
 
 
-            TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
+            TPatient selectedPatient = (TPatient) PatientDataGrid.SelectedItem;
             long selectedUser = App.user.UserId;
 
             using (var db = new databaseContext())
             {
-                var date = Microsoft.VisualBasic.Interaction.InputBox($"Enter the date", $"make an appointment for {selectedPatient.Name}", "Date");
-                var description = Microsoft.VisualBasic.Interaction.InputBox("Enter the description", $"make an appointment for {selectedPatient.Name}", "Description");
+                var date = Microsoft.VisualBasic.Interaction.InputBox($"Enter the date",
+                    $"make an appointment for {selectedPatient.Name}", "Date");
+                var description = Microsoft.VisualBasic.Interaction.InputBox("Enter the description",
+                    $"make an appointment for {selectedPatient.Name}", "Description");
 
                 try
                 {
@@ -158,21 +152,6 @@ namespace Final_Project
 
         }
 
-
-        private void OnStart()
-        {
-            LoginWindow login = new LoginWindow();
-            this.WindowState = WindowState.Maximized;
-
-            using (var db = new databaseContext())
-            {
-
-                PatientDataGrid.ItemsSource = db.TPatients.ToList();
-                PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
-
-            }
-        }
-
         private void GithubBtn_Click(object sender, RoutedEventArgs e)
         {
             var uri = "https://github.com/Levaii";
@@ -187,25 +166,62 @@ namespace Final_Project
             MessageBox.Show("countrykhaled@gmail.com", "Feel free to email me!");
         }
 
+        private readonly ObservableCollection<TPatient> filterPatients = new ObservableCollection<TPatient>();
+        private const string connectionString = "Data Source= database.db";
+
+        private void GetFilteredPatients()
+        {
+            using (System.Data.SQLite.SQLiteConnection connection = new System.Data.SQLite.SQLiteConnection(connectionString))
+            {
+                connection.Open();
+                
+                using (System.Data.SQLite.SQLiteCommand command = new System.Data.SQLite.SQLiteCommand("SELECT * FROM t_patients", connection))
+                {
+                    using (System.Data.SQLite.SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            long id = (long)reader["patient_ID"];
+
+                            string name = reader["Name"].ToString();
+
+                            long number = (long)reader["Number"];
+
+                            string email = reader["Email"].ToString();
+
+                            filterPatients.Add(new TPatient{PatientId = id, Name =  name, Number = number, Email = email});
+                        }
+                    }
+                }
+            }
+        }
 
         private void filterBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-
-            /*            using (var db = new databaseContext())
-                        {
-
-                            var searchText = TextBoxFilter.Text;
-
-                            var filteredData = initialData.Where(x => x.Name.Contains(searchText));
-                            PatientDataGrid.ItemsSource = filteredData;
+            string searchText = TextBoxFilter.Text;
+            var filteredItems = filterPatients.Where(item => item.Name.Contains(searchText)).ToList();
+            PatientDataGrid.ItemsSource = filteredItems;
+            
+            
 
 
-                        }*/
             if (!string.IsNullOrEmpty(TextBoxFilter.Text) && TextBoxFilter.Text.Length > 0)
                 Filter.Visibility = Visibility.Collapsed;
             else
                 Filter.Visibility = Visibility.Visible;
 
+        }
+
+        private void OnStart()
+        {
+            LoginWindow login = new LoginWindow();
+            this.WindowState = WindowState.Maximized;
+
+            using (var db = new databaseContext())
+            {
+                PatientDataGrid.ItemsSource = filterPatients;
+                PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
+            }
         }
     }
 }

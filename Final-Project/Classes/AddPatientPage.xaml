@@ -16,8 +16,8 @@
         <TextBlock Text="Address"  FontSize="11" FontWeight="Medium"  Margin="0 200 215 0" Foreground="CadetBlue" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
         <Grid Width="167" HorizontalAlignment="Left" Margin="46,0,0,0">
-            <TextBlock x:Name="Name" Margin="0 -200 8 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text=" Enter the Full Name ..."
+            <TextBlock x:Name="Name" Margin="0,17,8,0" VerticalAlignment="Top" Foreground="#B0B9C6" IsHitTestVisible="False"
+                           Panel.ZIndex="1" Text="Enter the Full Name ..."
                            Visibility="{Binding ElementName=FilterTextBox}" />
             <TextBox Name="NameTextBox" TextChanged="NameBox_TextChanged" Margin="0 -200 8 0" Style="{StaticResource FilterTextBox}"/>
 

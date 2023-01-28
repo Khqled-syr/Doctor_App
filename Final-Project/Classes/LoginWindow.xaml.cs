@@ -108,6 +108,8 @@ namespace Final_Project
             else
                 Password.Visibility = Visibility.Visible;
         }
+        
+        
         private void Password_MouseDown(object sender, MouseButtonEventArgs e)
         {
             passwordBox.Focus();
