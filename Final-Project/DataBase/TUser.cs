@@ -1,14 +1,18 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
 using System.Collections.Generic;
 
 namespace Final_Project.DataBase
 {
+
     public partial class TUser
     {
         public TUser()
         {
             TAppointments = new HashSet<TAppointment>();
         }
+
+
+        public TUser user = App.user;
 
         public long UserId { get; set; }
         public string? Name { get; set; }

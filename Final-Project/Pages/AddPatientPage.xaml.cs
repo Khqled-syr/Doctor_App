@@ -1,28 +1,31 @@
 ﻿using Final_Project.DataBase;
-using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
-namespace Final_Project.Classes
+namespace Final_Project.Pages
 {
-    public partial class AddPatientPage : Page
+
+
+
+    public partial class AddPatientPage : System.Windows.Controls.Page
     {
         public AddPatientPage()
         {
             InitializeComponent();
-        }
+        }   
 
-        private async void CloseBtn_Click(object sender, RoutedEventArgs e)
+            private async void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             PatientsWindow patients = new PatientsWindow();
             patients.Visibility = Visibility.Visible;
             await Task.Delay(1000);
-            Window win = (Window)this.Parent;
+            System.Windows.Window win = (System.Windows.Window)Parent;
             win.Close();
         }
-
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -38,7 +41,7 @@ namespace Final_Project.Classes
                 else
                 {
                     int parsedValue;
-                    if(!int.TryParse(NumberTextBox.Text, out parsedValue) || !int.TryParse(AgeTextBox.Text, out parsedValue))
+                    if (!int.TryParse(NumberTextBox.Text, out parsedValue) || !int.TryParse(AgeTextBox.Text, out parsedValue))
                     {
 
                         NotifyLabel.Content = "Age or number is not correct!";
@@ -46,8 +49,9 @@ namespace Final_Project.Classes
                     }
                     else
                     {
-                        db.TPatients.Add(new TPatient { Name = NameTextBox.Text, Age = Convert.ToInt64(AgeTextBox.Text), Number = Convert.ToInt64(NumberTextBox.Text), Email = EmailTextBox.Text, Address = AddressTextBox.Text });
+                        db.TPatients.Add(new TPatient { Name = NameTextBox.Text, Age = int.Parse(AgeTextBox.Text), Number = long.Parse(NumberTextBox.Text), Email = EmailTextBox.Text, Address = AddressTextBox.Text });
                         db.SaveChanges();
+
 
                         patients.PatientDataGrid.ItemsSource = db.TPatients.ToList();
                         patients.PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
@@ -63,8 +67,6 @@ namespace Final_Project.Classes
                 }
             }
         }
-
-
 
         private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -100,6 +102,27 @@ namespace Final_Project.Classes
                 Address.Visibility = Visibility.Collapsed;
             else
                 Address.Visibility = Visibility.Visible;
+        }
+
+        private void NumberTextBox_OnKeyUp(object sender, KeyEventArgs e)
+        {
+            string number = NumberTextBox.Text;
+
+            if (IsValidPhoneNumber(number))
+            {
+                NumberTextBox.Foreground = System.Windows.Media.Brushes.Black;
+            }
+            else
+            {
+                NumberTextBox.Foreground = System.Windows.Media.Brushes.Red;
+            }
+
+        }
+
+        private bool IsValidPhoneNumber(string phoneNumber)
+        {
+            // This is a basic example, you can use regular expressions or any other method to check if the phone number is in the correct format
+            return Regex.IsMatch(phoneNumber, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$");
         }
     }
 }

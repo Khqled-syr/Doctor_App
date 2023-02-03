@@ -1,13 +1,11 @@
-﻿using System;
-using System.Diagnostics;
+﻿using Final_Project.DataBase;
+using Final_Project.Pages;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Windows;
-using Final_Project.Classes;
 using System.Windows.Media;
 using System.Windows.Navigation;
-using Final_Project.DataBase;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace Final_Project
 {
@@ -17,18 +15,17 @@ namespace Final_Project
         {
             InitializeComponent();
             OnStart();
-
         }
-        
+
         private void LogoutBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+
             LoginWindow login = new LoginWindow();
 
             login.Show();
             this.Close();
         }
-        
+
         private void PatientsBtn_Click(object sender, RoutedEventArgs e)
         {
             PatientsWindow patients = new PatientsWindow();
@@ -62,13 +59,13 @@ namespace Final_Project
                 HomePatientGrid.ItemsSource = db.TAppointments
                     .Include(a => a.User)
                         .ToList();
-                
+
                 HomePatientGrid.ItemsSource = db.TAppointments
                     .Include(a => a.Patient)
                         .ToList();
 
 
-                
+
 
             }
         }
@@ -97,7 +94,7 @@ namespace Final_Project
         {
             AddPatientPage patientPage = new AddPatientPage();
             NavigationWindow window = new NavigationWindow();
-            window.Source = new Uri("/Classes/AddPatientPage.xaml", UriKind.Relative);
+            window.Source = new Uri("/Pages/AddPatientPage.xaml", UriKind.Relative);
             window.ShowsNavigationUI = false;
             window.WindowState = WindowState.Maximized;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;

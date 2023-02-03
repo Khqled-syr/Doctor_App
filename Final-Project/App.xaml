@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
-             StartupUri="Classes/LoginWindow.xaml"
+             StartupUri="Windows/LoginWindow.xaml"
              ShutdownMode="OnLastWindowClose">
     <Application.Resources>
 
@@ -346,6 +346,34 @@
             <Setter Property="Margin" Value="0 20 0 0" />
             <Setter Property="FontSize" Value="13" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="Grid.Row" Value="1" />
+            <Setter Property="Template" >
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="7">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="DarkGray" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>        
+        
+        <Style x:Key="LoginButton" TargetType="Button">
+            <Setter Property="Background" Value="Gray" />
+            <Setter Property="Foreground" Value="#ffffff" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Margin" Value="0 20 0 0" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="Grid.Row" Value="1" />
             <Setter Property="Template" >
                 <Setter.Value>

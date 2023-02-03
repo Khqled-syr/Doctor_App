@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Final_Project.DataBase;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Final_Project.DataBase;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Final_Project
@@ -23,7 +22,7 @@ namespace Final_Project
             {
                 TUser? user = db.TUsers.FirstOrDefault(user => user.Name.ToLower() == NameBox.Text.ToLower());
                 if (user == null)
-                {   
+                {
                     Results.Content = "Password or Username is not correct, please try again.";
                     passwordBox.Clear();
                     return;
@@ -46,7 +45,6 @@ namespace Final_Project
                 }
             }
         }
-
         private void Button_EnterKeyPress(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
@@ -60,6 +58,7 @@ namespace Final_Project
                         passwordBox.Clear();
                         return;
                     }
+
 
                     if (BC.Verify(passwordBox.Password, user.Password))
                     {
@@ -87,7 +86,6 @@ namespace Final_Project
                 this.DragMove();
             }
         }
-
         private void NameBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(NameBox.Text) && NameBox.Text.Length > 0)
@@ -95,7 +93,6 @@ namespace Final_Project
             else
                 Name.Visibility = Visibility.Visible;
         }
-
         private void Name_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NameBox.Focus();
@@ -107,9 +104,8 @@ namespace Final_Project
                 Password.Visibility = Visibility.Collapsed;
             else
                 Password.Visibility = Visibility.Visible;
+
         }
-        
-        
         private void Password_MouseDown(object sender, MouseButtonEventArgs e)
         {
             passwordBox.Focus();

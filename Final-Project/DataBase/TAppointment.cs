@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Final_Project.DataBase
+﻿namespace Final_Project.DataBase
 {
     public partial class TAppointment
     {
+        private string p;
+        private string u;
         public long AppointmentId { get; set; }
         public string? Day { get; set; }
         public string? Date { get; set; }
@@ -31,7 +30,17 @@ namespace Final_Project.DataBase
             Description = description;
             Patient = patient;
             User = selectedUser;
+        }     
+        
+        public TAppointment(string date, string description, string patientName, string userName)
+        {
+            Date = date;
+            Description = description;
+             p = patientName;
+            u = userName;
         }
+
+        public TAppointment() { }
 
     }
 }

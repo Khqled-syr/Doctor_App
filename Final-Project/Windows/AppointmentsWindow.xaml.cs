@@ -1,7 +1,8 @@
 ﻿using Final_Project.DataBase;
-using Final_Project.Classes.;
+using Final_Project.Pages;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
@@ -21,35 +22,14 @@ namespace Final_Project
         private void AgendaBtn_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Coming Soon!");
-
         }
-
-
-        private void OnStart()
-        {
-            this.WindowState = WindowState.Maximized;
-
-            using (var db = new databaseContext())
-            {
-                AppointmentsDataGrid.ItemsSource = db.TAppointments
-                    .Include(a => a.User)
-                    .ToList();
-
-                AppointmentsDataGrid.ItemsSource = db.TAppointments
-                        .Include(a => a.Patient)
-                        .ToList();
-
-                AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
-            }
-        }
-
 
 
         private void AddNewPatientBtn_Click(object sender, RoutedEventArgs e)
         {
             AddPatientPage patientPage = new AddPatientPage();
             NavigationWindow window = new NavigationWindow();
-            window.Source = new Uri("/Classes/AddPatientPage.xaml", UriKind.Relative);
+            window.Source = new Uri("/Pages/AddPatientPage.xaml", UriKind.Relative);
             window.ShowsNavigationUI = false;
             window.WindowState = WindowState.Maximized;
             window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
@@ -102,12 +82,14 @@ namespace Final_Project
         {
             if (AppointmentsDataGrid.SelectedItem == null) return;
 
+            PatientsWindow patientsWindow = new PatientsWindow();
             TAppointment selectedAppointment = (TAppointment)AppointmentsDataGrid.SelectedItem;
+            TPatient selectedPatient = (TPatient)patientsWindow.PatientDataGrid.SelectedItem;
 
             using (var db = new databaseContext())
             {
                 try
-                {   
+                {
                     db.TAppointments.Remove(selectedAppointment);
                     db.SaveChanges();
                     AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
@@ -115,14 +97,33 @@ namespace Final_Project
                     AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
 
 
-                    MessageBox.Show($"Succesfully deleted {selectedAppointment.AppointmentId} for patient: {selectedAppointment.PatientId}.");
+                    MessageBox.Show($"Succesfully deleted the appointment!");
                 }
                 catch
                 {
-                    MessageBox.Show($"Unable to delete {selectedAppointment.AppointmentId}.");
+                    MessageBox.Show($"Unable to delete the appointment");
                 }
             }
+        }
 
+
+        private void OnStart()
+        {
+            this.WindowState = WindowState.Maximized;
+
+            using (var db = new databaseContext())
+            {
+                AppointmentsDataGrid.ItemsSource = db.TAppointments
+                    .Include(a => a.User)
+                    .ToList();
+
+                AppointmentsDataGrid.ItemsSource = db.TAppointments
+                        .Include(a => a.Patient)
+                        .ToList();
+
+                AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
+            }
         }
     }
+
 }

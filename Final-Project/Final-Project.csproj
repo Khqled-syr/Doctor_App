@@ -11,18 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
-    <Page Remove="NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Classes\home.png" />
     <None Remove="database.db" />
     <None Remove="HomeWindow.xaml~RF738017a.TMP" />
     <None Remove="IMG_4354.JPG" />
     <None Remove="mwxofkxe.02a~" />
+    <None Remove="Windows\home.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,7 +31,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Classes\home.png" />
+    <Resource Include="Windows\home.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Windows\AppointmentsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\HomeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\LoginWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\PatientsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <XamlRuntime>Wpf</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

@@ -1,14 +1,21 @@
-﻿using System;
-using System.IO;
+﻿using Final_Project.DataBase;
+using Final_Project.Pages;
+using System;
+using System.Diagnostics;
 using System.Windows;
-using Final_Project.DataBase;
+using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace Final_Project
 {
     public partial class App : Application
     {
         public static TUser? user;
-        public static TPatient? patient;     
 
+
+        public App()
+        {
+            ShutdownMode = ShutdownMode.OnLastWindowClose;
+        }
     }
 }
