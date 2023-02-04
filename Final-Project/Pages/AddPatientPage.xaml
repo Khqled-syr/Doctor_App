@@ -2,9 +2,8 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:sys="clr-namespace:System;assembly=mscorlib"
-      xmlns:utils="clr-namespace:Final_Project.Utils"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:utils="clr-namespace:Final_Project.Utils"
       mc:Ignorable="d" Height="250" Width="500" Background="Transparent">
 
 
@@ -31,10 +30,10 @@
                            Visibility="{Binding ElementName=FilterTextBox}" />
             <TextBox Name="AgeTextBox" TextChanged="AgeBox_TextChanged" Margin="0 -100 8 0" Style="{StaticResource FilterTextBox}"/>
 
-            <TextBlock x:Name="Number" Margin="49,0,-5,0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+            <TextBlock x:Name="Number" Margin="49,0,10,0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="Phone Number"
                            Visibility="{Binding ElementName=FilterTextBox}" />
-            <TextBox Name="NumberTextBox" TextChanged="NumberBox_TextChanged" KeyUp="NumberTextBox_OnKeyUp" Margin="47,0,0,0" Style="{StaticResource FilterTextBox}" HorizontalAlignment="Left" Width="125"/>
+            <TextBox Name="NumberTextBox" TextChanged="NumberBox_TextChanged" KeyUp="NumberTextBox_OnKeyUp" Margin="47,0,0,0" Style="{StaticResource FilterTextBox}" HorizontalAlignment="Left" Width="112"/>
 
             <ComboBox x:Name="Code" Margin="0,0,123,0" VerticalAlignment="Center" Foreground="#B0B9c6" ItemsSource="{Binding Source={StaticResource countryCodes}}" SelectedItem="{Binding Path=SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
 
@@ -64,8 +63,8 @@
             </StackPanel>
         </Button>
 
-        <StackPanel Margin="210,200,0,0">
-            <Label x:Name="NotifyLabel" HorizontalAlignment="Left" Content="" Width="289" Height="50" Foreground="Black" FontWeight="Light"/>
+        <StackPanel Margin="213,200,0,0">
+            <Label x:Name="NotifyLabel" Content="" Width="286" Height="50" Foreground="Black" FontWeight="Light"/>
         </StackPanel>
     </Grid>
 </Page>

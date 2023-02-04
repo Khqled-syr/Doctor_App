@@ -1,4 +1,5 @@
 ﻿using Final_Project.DataBase;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -109,6 +110,11 @@ namespace Final_Project
         private void Password_MouseDown(object sender, MouseButtonEventArgs e)
         {
             passwordBox.Focus();
+        }
+
+        private void CloseAppBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
