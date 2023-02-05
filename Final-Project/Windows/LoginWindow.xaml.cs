@@ -1,4 +1,5 @@
 ﻿using Final_Project.DataBase;
+using Final_Project.Pages;
 using System;
 using System.Linq;
 using System.Windows;
@@ -60,7 +61,6 @@ namespace Final_Project
                         return;
                     }
 
-
                     if (BC.Verify(passwordBox.Password, user.Password))
                     {
                         App.user = user;
@@ -115,6 +115,16 @@ namespace Final_Project
         private void CloseAppBtn_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void RegisterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = new UserRegisterPage();
+        }
+
+        private void UserEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Content = new UserEditPage();
         }
     }
 }

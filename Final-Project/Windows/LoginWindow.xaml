@@ -6,12 +6,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" Background="White" Height="500" Width="800" WindowStyle="None" ResizeMode="NoResize" Icon="/Windows/home.png">
 
-
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="23*"/>
-            <ColumnDefinition Width="377*"/>
-        </Grid.ColumnDefinitions>
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="95*"/>
             <RowDefinition Height="32*"/>
@@ -19,6 +16,7 @@
             <RowDefinition Height="114*"/>
         </Grid.RowDefinitions>
 
+        <Frame x:Name="ContentFrame" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
 
 
         <Border Background="AliceBlue" CornerRadius="0 10 10 0" Grid.RowSpan="4" MouseDown="Border_MouseDown" Grid.ColumnSpan="2">
@@ -27,6 +25,14 @@
                 <Button Width="33" Background="Transparent" Foreground="Transparent" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Right" Click="CloseAppBtn_Click" Height="26">
                     <Icon:PackIconMaterial Kind="Close" Foreground="Gray" Background="Transparent"/>
                 </Button>
+
+                <Grid Width="26">
+                    <Button Width="30" Background="Transparent"  Foreground="Transparent" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" Click="UserEditBtn_Click" Height="26">
+                        <Icon:PackIconMaterial Kind="AccountEdit" Foreground="Gray" Background="Transparent"/>
+                    </Button>
+                </Grid>
+
+                
 
                 <TextBlock Text="Login" Style="{StaticResource TitleText}" FontFamily="Comic Sans MS" FontWeight="Bold" FontSize="48" Opacity="0.8" Foreground="DarkCyan" Width="148" Margin="5"/>
 
@@ -56,18 +62,21 @@
                     <Grid Margin="7 9">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="27*"/>
+                            <ColumnDefinition Width="224*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Icon:PackIconMaterial Kind="Lock" Width="15" Height="15"/>
-                        <TextBlock x:Name="Password" MouseDown="Password_MouseDown" Text=" Password" Style="{StaticResource TextHint}" Opacity="0.5" FontWeight="Bold" FontFamily="Segoe UI Variable Small"/>
-                        <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" PreviewKeyDown="Button_EnterKeyPress" Style="{StaticResource TextBox}"/>
+                        <Icon:PackIconMaterial Kind="Lock" Width="15" Height="15" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="Password" MouseDown="Password_MouseDown" Text=" Password" Style="{StaticResource TextHint}" Opacity="0.5" FontWeight="Bold" FontFamily="Segoe UI Variable Small" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,0,0,0"/>
+                        <PasswordBox x:Name="passwordBox" PasswordChanged="PasswordBox_PasswordChanged" PreviewKeyDown="Button_EnterKeyPress" Style="{StaticResource TextBox}" Grid.Column="1" Grid.ColumnSpan="2" Margin="10,0,0,0"/>
                     </Grid>
                 </Border>
 
-                <Label x:Name="Results" Content="" Foreground="Red" FontWeight="Bold" Margin="5" HorizontalAlignment="Center" />
-                <Button x:Name="LoginBtn" Content="Login" Click="Login_Button_Click" Style="{StaticResource LoginButton}"/>
+                <Label x:Name="Results" Content="" Foreground="Red"  FontWeight="Bold" Margin="5" HorizontalAlignment="Center" />
+                <Button x:Name="LoginBtn" Content="Login" Click="Login_Button_Click" Margin="2" FontFamily="Comic Sans MS" FontWeight="Bold" Opacity="0.8" Style="{StaticResource LoginButton}"/>
 
+                <TextBlock x:Name="CreateUser" Text="Not an existed user?" FontFamily="Comic Sans MS" FontWeight="Bold" Opacity="0.8" Foreground="DarkCyan" HorizontalAlignment="Center" Margin="25"/>
+                <Button x:Name="Register" Content="Register" Click="RegisterBtn_Click" FontFamily="Comic Sans MS" FontWeight="Bold" Opacity="0.8" Foreground="DarkCyan" Margin="-60" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" />
 
                 <Grid>
                     <Border CornerRadius="10 0 0 10">

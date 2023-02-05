@@ -40,6 +40,8 @@ namespace Final_Project.Pages
                         usersBox.SelectionChanged += userBox_SelectionChanged;
                     }
                 }
+
+                connection.Close();
             }
         }
         private void userBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -113,8 +115,6 @@ namespace Final_Project.Pages
                 Date.Visibility = Visibility.Collapsed;
             else
                 Date.Visibility = Visibility.Visible;
-
-
 
         }
 

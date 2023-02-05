@@ -106,7 +106,6 @@ namespace Final_Project
             }
         }
 
-
         private void OnStart()
         {
             this.WindowState = WindowState.Maximized;

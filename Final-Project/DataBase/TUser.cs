@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 
 namespace Final_Project.DataBase
@@ -21,5 +22,10 @@ namespace Final_Project.DataBase
         public string? Password { get; set; }
 
         public virtual ICollection<TAppointment> TAppointments { get; set; }
+
+        public static explicit operator TUser(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

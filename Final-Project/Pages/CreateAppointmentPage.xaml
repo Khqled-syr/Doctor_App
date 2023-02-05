@@ -11,7 +11,7 @@
             <TextBlock Text="Description"  FontSize="11" FontWeight="Medium" Margin="575,355,0,0" Foreground="CadetBlue" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <TextBlock Text="Doctor"  FontSize="11" FontWeight="Medium"  Margin="575,404,0,0" Foreground="CadetBlue" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <Grid Width="180" HorizontalAlignment="Left" Margin="626,273,0,-273">
+            <Grid Width="180" HorizontalAlignment="Left" Margin="626,273,0,101">
                 <TextBlock x:Name="Date" Margin="-13,31,21,0" VerticalAlignment="Top" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="e.g: 1/1/2023 - Friday"
                            Visibility="{Binding ElementName=FilterTextBox}" />
@@ -26,7 +26,7 @@
                            Visibility="{Binding ElementName=FilterTextBox}" />
                 <TextBox Name="DoctorTextBox" TextChanged="DoctorBox_TextChanged" IsReadOnly="True" Margin="42,124,0,0" Style="{StaticResource FilterTextBox}" HorizontalAlignment="Left" Width="138" VerticalAlignment="Top"/>
 
-                <ComboBox x:Name="usersBox" Margin="-8,129,143,0" VerticalAlignment="Top" Foreground="#B0B9c6" />
+                <ComboBox x:Name="usersBox" Margin="-8,129,143,0" Style="{StaticResource ComboBoxFlatStyle}" VerticalAlignment="Top" Foreground="#B0B9c6" />
 
                 <TextBlock x:Name="Description" Margin="16,84,0,0" VerticalAlignment="Top" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text="e.g: sick"

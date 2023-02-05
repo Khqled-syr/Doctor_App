@@ -35,7 +35,7 @@
                            Visibility="{Binding ElementName=FilterTextBox}" />
             <TextBox Name="NumberTextBox" TextChanged="NumberBox_TextChanged" KeyUp="NumberTextBox_OnKeyUp" Margin="47,0,0,0" Style="{StaticResource FilterTextBox}" HorizontalAlignment="Left" Width="112"/>
 
-            <ComboBox x:Name="Code" Margin="0,0,123,0" VerticalAlignment="Center" Foreground="#B0B9c6" ItemsSource="{Binding Source={StaticResource countryCodes}}" SelectedItem="{Binding Path=SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
+            <ComboBox x:Name="Code" Margin="0,0,123,0" Style="{StaticResource ComboBoxFlatStyle}" VerticalAlignment="Center" Foreground="#B0B9c6" ItemsSource="{Binding Source={StaticResource countryCodes}}" SelectedItem="{Binding Path=SelectedCountry, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="24"/>
 
             <TextBlock x:Name="Email" Margin="0 100 8 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
                            Panel.ZIndex="1" Text=" Enter the Email ..."
