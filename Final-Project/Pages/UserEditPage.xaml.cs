@@ -1,27 +1,8 @@
 ﻿using Final_Project.DataBase;
-using Microsoft.Data.Sqlite;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Data.SQLite;
-using System.Linq;
-using System.Numerics;
-using System.Security;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Windows.System;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Final_Project.Pages
 {
@@ -73,7 +54,7 @@ namespace Final_Project.Pages
             if (!string.IsNullOrWhiteSpace(NameTextBox.Text))
             {
                 var user = NameTextBox.Text;
-                var result = MessageBox.Show("Are you sure you want to delete the user?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var result = MessageBox.Show($"Are you sure you want to delete {user.ToLower()} ?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
                     using (var db = new databaseContext())
@@ -133,7 +114,7 @@ namespace Final_Project.Pages
         {
             LoginWindow Login = new LoginWindow();
             Login.Visibility = Visibility.Visible;
-            await Task.Delay(700);
+            await Task.Delay(10);
             System.Windows.Window win = (System.Windows.Window)Parent;
             win.Close();
         }

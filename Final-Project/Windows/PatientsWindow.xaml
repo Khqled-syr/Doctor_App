@@ -7,7 +7,7 @@
         mc:Ignorable="d" Background="Transparent" WindowStartupLocation="CenterScreen" AllowsTransparency="True" WindowStyle="None" Height="720" Width="1080" ResizeMode="NoResize" Icon="/Windows/home.png">
 
 
-    
+
 
     <Border Background="AliceBlue" CornerRadius="0">
         <Grid>
@@ -16,18 +16,18 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
+
             <Frame x:Name="ContentFrame" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden"/>
 
             <!--Left Menu-->
             <Grid>
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                
+
 
                 <Button Margin="20 28 0 35" Style="{StaticResource TopButton}">
                     <Icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
@@ -140,17 +140,17 @@
 
                 <!--Page Title-->
                 <TextBlock x:Name="PatientsCount" Text="Patients" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" Foreground="DarkCyan" HorizontalAlignment="Left"/>
-                               
+
                 <TextBlock Text="Filter by" Grid.Row="1" FontSize="13" FontWeight="Medium" FontStyle="Italic" Margin="0 0 215 0" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center"/>
 
 
                 <!--Filter Textbox-->
                 <Grid Width="200" HorizontalAlignment="Right" Grid.Row="1">
-                    <TextBlock x:Name="Filter" Margin="0 1 8 0" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
-                           Panel.ZIndex="1" Text=" Search in Patient ..."
-                           Visibility="{Binding ElementName=FilterTextBox}" />
+                    <TextBlock x:Name="Filter" VerticalAlignment="Center" Foreground="#B0B9C6" IsHitTestVisible="False"
+                           Panel.ZIndex="1" HorizontalAlignment="Center" Text="Search in Patient ..."
+                           Visibility="{Binding ElementName=FilterTextBox}" Width="180" />
                     <TextBox Name="TextBoxFilter" TextChanged="FilterBox_TextChanged" Style="{StaticResource FilterTextBox}"/>
-                    
+
                 </Grid>
 
 
@@ -166,15 +166,15 @@
                     </Button>
 
                 </Grid>
-                
-                
+
+
 
 
 
 
                 <!--Seprator-->
                 <Separator Height="1" Grid.Row="3" Background="#DAE2EA" Margin="0 -1 0 10"/>
-                
+
                 <!--Patient Data Grid-->
                 <DataGrid RowStyle="{DynamicResource DataGridRowStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" x:Name="PatientDataGrid" Style="{DynamicResource DataGridStyle1}">
                     <DataGrid.Columns>

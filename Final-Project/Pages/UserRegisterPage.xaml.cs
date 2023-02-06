@@ -16,7 +16,7 @@ namespace Final_Project.Pages
             InitializeComponent();
         }
 
-        private void CreateBtn_Click(object sender, RoutedEventArgs e)
+        private async void CreateBtn_Click(object sender, RoutedEventArgs e)
         {
 
             using (var db = new databaseContext())
@@ -38,11 +38,11 @@ namespace Final_Project.Pages
                     else
                     {
                         var hashed = BC.HashPassword(PasswordBox.Password);
-
+                        await Task.Delay(10);
                         db.TUsers.Add(new TUser { Name = NameTextBox.Text, Password = hashed, Number = long.Parse(NumberTextBox.Text), Email = EmailTextBox.Text });
                         db.SaveChanges();
 
-
+                        await Task.Delay(10);
                         NotifyLabel.Content = $"Successfully added '{NameTextBox.Text}\nto the user list!'";
 
                         NameTextBox.Clear();
@@ -61,7 +61,7 @@ namespace Final_Project.Pages
         {
             LoginWindow login = new LoginWindow();
             login.Visibility = Visibility.Visible;
-            await Task.Delay(700);
+            await Task.Delay(10);
             System.Windows.Window win = (System.Windows.Window)Parent;
             win.Close();
         }

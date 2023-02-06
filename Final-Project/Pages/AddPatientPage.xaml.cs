@@ -22,22 +22,28 @@ namespace Final_Project.Pages
         {
             PatientsWindow patients = new PatientsWindow();
             patients.Visibility = Visibility.Visible;
-            await Task.Delay(1000);
+            await Task.Delay(10);
             System.Windows.Window win = (System.Windows.Window)Parent;
             win.Close();
         }
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        private async void AddBtn_Click(object sender, RoutedEventArgs e)
         {
 
             PatientsWindow patients = new PatientsWindow();
 
             using (var db = new databaseContext())
             {
+
+                TPatient? patient = db.TPatients.FirstOrDefault(patient => patient.Name.ToLower() == NameTextBox.Text.ToLower());
+
                 if (string.IsNullOrEmpty(NameTextBox.Text) && NameTextBox.Text.Length == 0 || string.IsNullOrEmpty(AgeTextBox.Text) && AgeTextBox.Text.Length == 0 || string.IsNullOrEmpty(NumberTextBox.Text) && NumberTextBox.Text.Length == 0 || string.IsNullOrEmpty(EmailTextBox.Text) && EmailTextBox.Text.Length == 0 || string.IsNullOrEmpty(AddressTextBox.Text) && AddressTextBox.Text.Length == 0)
                 {
                     NotifyLabel.Content = $"Make sure to fill in all the requirements!";
+                    await Task.Delay(2000);
+                    NotifyLabel.Content = "";
                     return;
                 }
+
                 else
                 {
                     int parsedValue;
@@ -45,6 +51,15 @@ namespace Final_Project.Pages
                     {
 
                         NotifyLabel.Content = "Age or number is not correct!";
+                        await Task.Delay(2000);
+                        NotifyLabel.Content = "";
+                        return;
+                    }
+                    else if (patient != null)
+                    {
+                        NotifyLabel.Content = $"this patient does already exist!";
+                        await Task.Delay(2000);
+                        NotifyLabel.Content = "";
                         return;
                     }
                     else
@@ -63,6 +78,9 @@ namespace Final_Project.Pages
                         NumberTextBox.Clear();
                         EmailTextBox.Clear();
                         AddressTextBox.Clear();
+
+                        await Task.Delay(2000);
+                        NotifyLabel.Content = "";
                     }
                 }
             }

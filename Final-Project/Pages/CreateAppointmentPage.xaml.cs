@@ -104,7 +104,7 @@ namespace Final_Project.Pages
         {
             PatientsWindow patients = new PatientsWindow();
             patients.Visibility = Visibility.Visible;
-            await Task.Delay(700);
+            await Task.Delay(10);
             System.Windows.Window win = (System.Windows.Window)Parent;
             win.Close();
         }

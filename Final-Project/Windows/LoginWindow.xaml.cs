@@ -2,6 +2,7 @@
 using Final_Project.Pages;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,7 +19,7 @@ namespace Final_Project
             //Scaffold-DbContext "DataSource=database.db" Microsoft.EntityFrameworkCore.Sqlite
         }
 
-        private void Login_Button_Click(object sender, RoutedEventArgs e)
+        private async void Login_Button_Click(object sender, RoutedEventArgs e)
         {
             using (var db = new databaseContext())
             {
@@ -34,9 +35,10 @@ namespace Final_Project
                 {
                     App.user = user;
                     HomeWindow home = new HomeWindow();
-
-                    this.Close();
                     home.Show();
+                    await Task.Delay(10);
+                    this.Close();
+                    
 
                 }
                 else
@@ -47,7 +49,7 @@ namespace Final_Project
                 }
             }
         }
-        private void Button_EnterKeyPress(object sender, KeyEventArgs e)
+        private async void Button_EnterKeyPress(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return)
             {
@@ -66,8 +68,9 @@ namespace Final_Project
                         App.user = user;
                         HomeWindow home = new HomeWindow();
 
-                        this.Close();
                         home.Show();
+                        await Task.Delay(10);
+                        this.Close();
                     }
                     else
                     {

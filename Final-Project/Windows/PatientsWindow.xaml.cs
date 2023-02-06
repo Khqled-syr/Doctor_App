@@ -45,7 +45,6 @@ namespace Final_Project
 
             appointments.Show();
             this.Close();
-
         }
 
         private void AgendaBtn_Click(object sender, RoutedEventArgs e)
@@ -74,19 +73,23 @@ namespace Final_Project
             if (PatientDataGrid.SelectedItem == null) return;
 
             TPatient selectedPatient = (TPatient)PatientDataGrid.SelectedItem;
+            var result = MessageBox.Show($"Are you sure you want to permanently delete {selectedPatient.Name} ?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             using (var db = new databaseContext())
             {
                 try
                 {
-                    db.TPatients.Remove(selectedPatient);
-                    db.SaveChanges();
-                    PatientDataGrid.ItemsSource = db.TPatients.ToList();
-                    PatientDataGrid.Items.Refresh();
-                    PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        db.TPatients.Remove(selectedPatient);
+                        db.SaveChanges();
+                        PatientDataGrid.ItemsSource = db.TPatients.ToList();
+                        PatientDataGrid.Items.Refresh();
+                        PatientsCount.Text = $"Patients: {db.TPatients.Count().ToString()}";
 
 
-                    MessageBox.Show($"Succesfully deleted {selectedPatient.Name}.");
+                        MessageBox.Show($"Succesfully deleted {selectedPatient.Name}.");
+                    }
                 }
                 catch
                 {
@@ -163,8 +166,8 @@ namespace Final_Project
 
         private void FilterBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            string searchText = TextBoxFilter.Text;
-            var filteredItems = filterPatients.Where(item => item.Name.Contains(searchText)).ToList();
+            string searchText = TextBoxFilter.Text.ToLower();
+            var filteredItems = filterPatients.Where(item => item.Name.ToLower().Contains(searchText)).ToList();
             PatientDataGrid.ItemsSource = filteredItems;
 
 

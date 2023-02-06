@@ -85,19 +85,24 @@ namespace Final_Project
             PatientsWindow patientsWindow = new PatientsWindow();
             TAppointment selectedAppointment = (TAppointment)AppointmentsDataGrid.SelectedItem;
             TPatient selectedPatient = (TPatient)patientsWindow.PatientDataGrid.SelectedItem;
+            var result = MessageBox.Show($"Are you sure you want to delete the appointment ?", "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             using (var db = new databaseContext())
             {
                 try
                 {
-                    db.TAppointments.Remove(selectedAppointment);
-                    db.SaveChanges();
-                    AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
-                    AppointmentsDataGrid.Items.Refresh();
-                    AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
+                    if (result == MessageBoxResult.Yes)
+                    {
+
+                        db.TAppointments.Remove(selectedAppointment);
+                        db.SaveChanges();
+                        AppointmentsDataGrid.ItemsSource = db.TAppointments.ToList();
+                        AppointmentsDataGrid.Items.Refresh();
+                        AppointmentsCount.Text = $"Appointments: {db.TAppointments.Count().ToString()}";
 
 
-                    MessageBox.Show($"Succesfully deleted the appointment!");
+                        MessageBox.Show($"Succesfully deleted the appointment!");
+                    }
                 }
                 catch
                 {
